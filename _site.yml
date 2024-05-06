@@ -1,11 +1,13 @@
-name: "MyLabJournal"
+name: "Optimization Trees Review"
 navbar:
-  title: "MyLabJournal"
+  title: "Optimization Trees Review"
   left:
-    - text: "Home"
+    - text: "About"
       href: index.html
-    - text: "Journal"
+    - text: "MurTree "
       href: Journal.html
-    - text: "Links"
+    - text: "MurTree vs. Others"
+      href: Comparisons.html
+    - text: "Resources"
       href: Links.html
 output_dir: "docs"

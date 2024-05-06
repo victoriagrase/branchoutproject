@@ -17,11 +17,11 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **My Lab Journal**
+# **Review of MurTree: Optimal Decision Trees**
 
 This is a template example for lab journaling. Students in Matt Crump's Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.
 
-## How to use
+## What are Decision Trees?
 
 1. fork the repo for this website and follow instructions on read me to get set up. [https://github.com/CrumpLab/LabJournalWebsite](https://github.com/CrumpLab/LabJournalWebsite)
 
@@ -30,6 +30,9 @@ This is a template example for lab journaling. Students in Matt Crump's Human Co
 3. See the [links page](https://crumplab.github.io/LabJournalWebsite/Links.html) for lots of helpful links on learning R.
 
 4. Change everything to make it your own.
+
+
+## What is Mur Tree?
 
 
 </div>
