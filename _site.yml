@@ -2,7 +2,7 @@ name: "Optimization Trees Review"
 navbar:
   title: "Optimization Trees Review"
   left:
-    - text: "About"
+    - text: "About Decision Trees"
       href: index.html
     - text: "MurTree "
       href: Journal.html

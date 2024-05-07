@@ -238,15 +238,18 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Optimization Trees</a>
+      <a class="navbar-brand" href="index.html">Optimization Trees Review</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">About</a>
+  <a href="index.html">About Decision Trees</a>
 </li>
 <li>
-  <a href="Journal.html">MerLu Tree </a>
+  <a href="Journal.html">MurTree </a>
+</li>
+<li>
+  <a href="Comparisons.html">MurTree vs. Others</a>
 </li>
 <li>
   <a href="Links.html">Resources</a>
@@ -268,10 +271,25 @@ $(document).ready(function () {
 </div>
 
 
+<body style="background-color:lemonchiffon;">
 <style type="text/css">
 .title {
   display: none;
 }
+
+/*----------LOGO above TOC---------*/
+
+#TOC::before {
+  content: "";
+  display: block;
+  height: 200px;
+  margin: 2em 20px 40px 20px;
+  background-image: url("tree-logo.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 
 #getting-started img {
   margin-right: 10px;
@@ -279,14 +297,15 @@ $(document).ready(function () {
 
 </style>
 <div class="row" style="padding-top: 30px;">
-<div id="optimization-trees" class="section level1 col-sm-6">
-<h1><strong>Optimization Trees</strong></h1>
+<div id="review-of-mutree-optimal-decision-trees"
+class="section level1 col-sm-6">
+<h1><strong>Review of MuTree: Optimal Decision Trees</strong></h1>
 <p>This is a template example for lab journaling. Students in Matt
 Crump’s Human Cognition and Performance Lab will use this template to
 learn R, and other things. Students can replace this text with more fun
 things. People not in my lab can use this too.</p>
-<div id="how-to-use" class="section level2">
-<h2>How to use</h2>
+<div id="what-are-decision-trees" class="section level2">
+<h2>What are Decision Trees?</h2>
 <ol style="list-style-type: decimal">
 <li><p>fork the repo for this website and follow instructions on read me
 to get set up. <a
@@ -301,6 +320,9 @@ href="https://crumplab.github.io/LabJournalWebsite/Links.html">links
 page</a> for lots of helpful links on learning R.</p></li>
 <li><p>Change everything to make it your own.</p></li>
 </ol>
+</div>
+<div id="what-is-mur-tree" class="section level2">
+<h2>What is Mur Tree?</h2>
 </div>
 </div>
 <div id="crump-lab-human-cognition-and-performance"
