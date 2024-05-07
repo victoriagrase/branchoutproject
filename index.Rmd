@@ -19,7 +19,7 @@ toc_float: true
 /*----------LOGO above TOC---------*/
 
 .col-sm-6.left {
-  background-image: url("https://github.com/victoriagrase/branchoutproject/blob/08f9f8b9d9244cbace7292779cf0f567695b3bf8/images/tree%20logo.jpg");
+  background-image: url("https://github.com/victoriagrase/branchoutproject/blob/master/images/treelogo.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -31,6 +31,10 @@ toc_float: true
 
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
+
+  </div>
+</div>
+
 
 # **What are Decision Trees?**
 
@@ -54,9 +58,3 @@ This is a template example for lab journaling. Students in Matt Crump's Human Co
 ## **Differences between MurTree and Classification Trees?**
 
 
-</div>
-<div class="col-sm-6">
-
-
-</a>
-</div>

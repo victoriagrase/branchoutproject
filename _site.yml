@@ -1,7 +1,7 @@
 name: "Optimization Trees Review"
 navbar:
   logo:
-    href: https://github.com/victoriagrase/branchoutproject/blob/master/images/treelogo.jpg
+     image: \images\treelogo.png
   title: "Optimization Trees Review"
   left:
     - text: "About Decision Trees"
