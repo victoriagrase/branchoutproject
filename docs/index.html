@@ -219,6 +219,78 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+#TOC {
+  display: none !important;
+}
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -226,6 +298,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -283,20 +365,13 @@ $(document).ready(function () {
 }
 /*----------LOGO above TOC---------*/
 
-#TOC::before {
-  content: "";
-  display: block;
+.col-sm-6.left {
+  background-image: url("https://github.com/victoriagrase/branchoutproject/blob/08f9f8b9d9244cbace7292779cf0f567695b3bf8/images/tree%20logo.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 200px;
   margin: 2em 20px 40px 20px;
-  background-image:"https://github.com/victoriagrase/branchoutproject/blob/08f9f8b9d9244cbace7292779cf0f567695b3bf8/images/tree%20logo.jpg";
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-
-#getting-started img {
-  margin-right: 10px;
 }
 
 </style>
@@ -336,16 +411,14 @@ class="section level2">
 Trees?</strong></h2>
 </div>
 </div>
-<div id="crump-lab-human-cognition-and-performance"
-class="section level3 col-sm-6">
-<h3><a href="https://crumplab.github.io">Crump Lab: Human Cognition and
-Performance</a></h3>
-<p><a href = "https://crumplab.github.io"> <img src="images/logo.png" />
-</a></p>
+<div class="col-sm-6">
+<p></a></p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -378,6 +451,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

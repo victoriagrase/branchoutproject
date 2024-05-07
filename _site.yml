@@ -1,5 +1,7 @@
 name: "Optimization Trees Review"
 navbar:
+  logo:
+    image: images/treelogo.jpg
   title: "Optimization Trees Review"
   left:
     - text: "About Decision Trees"

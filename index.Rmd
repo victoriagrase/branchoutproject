@@ -1,6 +1,8 @@
 ---
 title: "Optimization Tree"
 output: html_document
+toc: true
+toc_float: true
 ---
 
 <body style="background-color:lemonchiffon;">
@@ -16,20 +18,13 @@ output: html_document
 }
 /*----------LOGO above TOC---------*/
 
-#TOC::before {
-  content: "";
-  display: block;
+.col-sm-6.left {
+  background-image: url("https://github.com/victoriagrase/branchoutproject/blob/08f9f8b9d9244cbace7292779cf0f567695b3bf8/images/tree%20logo.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 200px;
   margin: 2em 20px 40px 20px;
-  background-image:"https://github.com/victoriagrase/branchoutproject/blob/08f9f8b9d9244cbace7292779cf0f567695b3bf8/images/tree%20logo.jpg";
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-
-#getting-started img {
-  margin-right: 10px;
 }
 
 </style>
@@ -62,9 +57,6 @@ This is a template example for lab journaling. Students in Matt Crump's Human Co
 </div>
 <div class="col-sm-6">
 
-### [Crump Lab: Human Cognition and Performance](https://victoriagrase.github.io)
 
-<a href = "https://victoriagrase.github.io">
-![](images/tree logo.png)
 </a>
 </div>
