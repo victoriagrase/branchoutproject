@@ -8,53 +8,74 @@ toc_float: true
 <body style="background-color:lemonchiffon;">
 
 <style type="text/css">
-.title {
-  display: none;
-}
 
+.title { display: none; }
 
-#getting-started img {
-  margin-right: 10px;
-}
-/*----------LOGO above TOC---------*/
+```{=html}
+<style type="text/css">
 
-.col-sm-6.left {
-  background-image: url("https://github.com/victoriagrase/branchoutproject/blob/master/images/treelogo.png");
+.#header.fluid-row::before {
+   content: "";
+   height: 150px;
+   width: 150px;
+   float: left;
+  background-image: url("../images/treelogo.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  height: 200px;
-  margin: 2em 20px 40px 20px;
 }
-
 </style>
+```
+# **What are Optimal Decision Trees?**
 
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-
-  </div>
-</div>
-
-
-# **What are Decision Trees?**
-
-This is a template example for lab journaling. Students in Matt Crump's Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.
+The best machine learning model takes the form of a tree to determine binary decisions according to a given metric.
+The idea of computing optimal decision dates back to approximately the 1970s when constructing optimal decision trees was proven to be NP-hard.
+The basic premise is that machine learning models, apart from high accuracy, must also be able to explain their decisions to a (non-expert) human.
+This is necessary to increase human trust and reliability of machine learning in complex scenarios that are conventionally handled by humans.
+Optimal decision trees of small size naturally fit within the scope of explainable AI, as their reduced size is more convenient for human interpretation.
 
 ## **What is MurTree?**
 
-1. fork the repo for this website and follow instructions on read me to get set up. [https://github.com/CrumpLab/LabJournalWebsite](https://github.com/CrumpLab/LabJournalWebsite)
+Murtree introduces an innovative approach to constructing optimal classification trees, drawing inspiration from diverse scientific literature and integrating them into a cohesive algorithmic framework.
+By synthesizing key principles from existing research, Murtree offers a unified solution that optimizes the process of decision tree generation.
 
-2. Blog/journal what you are doing in R, by editing the Journal.Rmd. See the [Journal page](https://crumplab.github.io/LabJournalWebsite/Journal.html) for an example of what to do to get started learning R.
+Utilizing cutting-edge algorithmic techniques, Murtree significantly enhances computational efficiency compared to current standards.
+It achieves this by leveraging input datasets and predetermined predicates to minimize misclassifications, all while adhering to user-defined constraints on tree depth and node count.
 
-3. See the [links page](https://crumplab.github.io/LabJournalWebsite/Links.html) for lots of helpful links on learning R.
-
-4. Change everything to make it your own.
-
+Moreover, Murtree is highly adaptable, and capable of extending its functionality to accommodate diverse requirements.
+It can seamlessly handle tasks such as multi-classification, regression analysis, sparse decision tree objectives, and lexicographical optimization for minimizing misclassification and tree size.
+Additionally, it offers anytime behavior and supports nonlinear metrics, ensuring versatility and robustness in a multitude of analytical scenarios.
 
 ### **Who Developed MurTree?**
 
-### **Motivation behind MurTree?**
+The creators of Murtree hail from prestigious institutions across the globe, each bringing a wealth of expertise and experience to the project.
+Emir Demirović and Anna Lukina represent Delft University of Technology in the Netherlands, while Emmanuel Hebrard contributes from LAAS CNRS in Toulouse, France.
+Jeffrey Chan, James Bailey, Christopher Leckie, and Kotagiri Ramamohanarao are affiliated with the University of Melbourne in Australia, while Peter J. Stuckey is associated with both Monash University and DATA61, also in Melbourne.
+Together, this international team of researchers collaborates to advance the field of machine learning and algorithm development, exemplifying the power of global cooperation in scientific innovation.
 
-## **Differences between MurTree and Classification Trees?**
+### **Motivation behind MurTree? What sets it apart from simple classification trees?**
+
+The motivation behind the new algorithm, MurTree, stems from the need to efficiently compute optimal classification trees while offering flexibility and scalability.
+Here are some key aspects of the algorithm's motivation:
+
+1.  MurTree aims to compute a decision tree that minimizes the number of misclassifications using a given set of predicates.
+    By optimizing this objective, the algorithm helps improve the accuracy of classification tasks.
+
+2.  The algorithm allows constraints on the depth and number of nodes of the decision tree, providing users with the flexibility to control the complexity of the resulting tree.
+    This feature is crucial for adapting the algorithm to different use cases and datasets.
+
+3.  Extension to Additional Functionality, such as multi-classification, regression, sparse decision tree objectives, and more.
+    This allows researchers and practitioners to tailor the algorithm to specific needs and applications.
+
+4.   The algorithm adopts dynamic programming and search techniques to create a clear high-level view of the algorithmic approach.
+
+5.   Incorporating specialized techniques for computing optimal classification trees efficiently, such as frequency counting and incremental construction, helps reduce the runtime of computing optimal trees, leading to significant speed-ups.
+
+6.  The algorithm employs a novel similarity-based mechanism to compute a lower bound on the number of misclassifications.
+
+7.  MurTree extends existing techniques and caching schemes, incorporates incremental solving options, refines lower-bounding techniques, and implements dynamic node exploration strategies.
+
+8.  In addition through empirical evaluation, the algorithm undergoes a detailed experimental study to analyze its effectiveness and scalability.
+
 
 
