@@ -10,6 +10,10 @@ output: html_document
   display: none;
 }
 
+
+#getting-started img {
+  margin-right: 10px;
+}
 /*----------LOGO above TOC---------*/
 
 #TOC::before {
@@ -17,7 +21,7 @@ output: html_document
   display: block;
   height: 200px;
   margin: 2em 20px 40px 20px;
-  background-image: url("tree-logo.png");
+  background-image:"https://github.com/victoriagrase/branchoutproject/blob/08f9f8b9d9244cbace7292779cf0f567695b3bf8/images/tree%20logo.jpg";
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -33,11 +37,11 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **Review of MuTree: Optimal Decision Trees**
+# **What are Decision Trees?**
 
 This is a template example for lab journaling. Students in Matt Crump's Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.
 
-## What are Decision Trees?
+## **What is MurTree?**
 
 1. fork the repo for this website and follow instructions on read me to get set up. [https://github.com/CrumpLab/LabJournalWebsite](https://github.com/CrumpLab/LabJournalWebsite)
 
@@ -48,15 +52,19 @@ This is a template example for lab journaling. Students in Matt Crump's Human Co
 4. Change everything to make it your own.
 
 
-## What is Mur Tree?
+### **Who Developed MurTree?**
+
+### **Motivation behind MurTree?**
+
+## **Differences between MurTree and Classification Trees?**
 
 
 </div>
 <div class="col-sm-6">
 
-### [Crump Lab: Human Cognition and Performance](https://crumplab.github.io)
+### [Crump Lab: Human Cognition and Performance](https://victoriagrase.github.io)
 
-<a href = "https://crumplab.github.io">
-![](images/logo.png)
+<a href = "https://victoriagrase.github.io">
+![](images/tree logo.png)
 </a>
 </div>
