@@ -5,10 +5,25 @@ toc_float: true
 ---
 
 <body style="background-color:lemonchiffon;">
+<style>
+.logo {
+    position: topleft;
+    width: 200px;
+    height: 200px;
+}
+</style>
+
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/treelogo.png){.logo}
+
+
 
 <style type="text/css">
 
 .title { display: none; }
+
+</style>
+
+
 
 ```{=html}
 <style type="text/css">

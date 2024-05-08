@@ -16,13 +16,14 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-# **Review of MuTree: Optimal Decision Trees**
+# **Review of MurTree: Optimal Decision Trees**
 
-This is a template example for lab journaling. Students in Matt Crump's Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.
+The Murtree Algorithm computes optimal classification trees by exhaustive search. The search space is exponentially large, but special measures are taken to efficiently iterate through all trees, exploit the overlap between trees, and avoid computing suboptimal decision trees.
 
-# My first post
 
-2018 | 7 | 23 Last compiled: `r Sys.Date()`
+# **Core Equation**
+
+The following equation is the core foundation of the algorithm. The dynamic programming formulation of optimal classification trees is given by Figure 1 where input parameters consist of binary data set ⅅ with features 𝐹, an upper bound on depth ⅆ, and an upper bound on the number of feature nodes 𝑛. The output is the minimum number of misclassifications possible on the data given the input decision tree characteristics. Here ∅ indicated that tree is infeasible or not of interest since a better tree is known.
 
 Notice that whatever you define as a top level header, automatically gets put into the table of contents bar on the left. 
 
