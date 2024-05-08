@@ -5,39 +5,49 @@ toc_float: true
 ---
 
 <body style="background-color:lemonchiffon;">
+<style>
+.logo {
+   position: fixed;
+    top: 60px;
+    left: 20px;
+    width: 250px;
+    height: 250px;
+    z-index: 999; /* Ensure the logo appears above other content */
+}
+</style>
+
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/treelogo.png){.logo}
+
+
 
 <style type="text/css">
 
 .title { display: none; }
 
-<img src="C:/Users/VGSCHOOL/PHP2650/treelogo.png" alt="Logo">
-
-
-
-
-
-```{=html}
-<style type="text/css">
-
-.#header.fluid-row::before {
-   content: "";
-   height: 150px;
-   width: 150px;
-   float: left;
-  background-image: url("../images/treelogo.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 </style>
-```
+
 # **What are Optimal Decision Trees?**
 
 The best machine learning model takes the form of a tree to determine binary decisions according to a given metric.
 The idea of computing optimal decision dates back to approximately the 1970s when constructing optimal decision trees was proven to be NP-hard.
 The basic premise is that machine learning models, apart from high accuracy, must also be able to explain their decisions to a (non-expert) human.
 This is necessary to increase human trust and reliability of machine learning in complex scenarios that are conventionally handled by humans.
-Optimal decision trees of small size naturally fit within the scope of explainable AI, as their reduced size is more convenient for human interpretation.
+Optimal decision trees of small size naturally fit within the scope of explainable AI, as their reduced size is more convenient for human interpretation. 
+
+Here is a visual example of a simple decision tree:
+
+<style>
+.image{
+   position: center;
+    width: 250px;
+    height: 250px;
+}
+</style>
+
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/simpletree.png){.image}
+
+
+
 
 ## **What is MurTree?**
 

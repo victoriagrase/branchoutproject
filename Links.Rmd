@@ -1,24 +1,41 @@
 ---
 output: html_document
+toc: true
+toc_float: true
 ---
 
 <body style="background-color:lemonchiffon;">
 
+```{=html}
+<style>
+.logo {
+   position: fixed;
+    top: 60px;
+    left: 20px;
+    width: 250px;
+    height: 250px;
+    z-index: 999; /* Ensure the logo appears above other content */
+}
+</style>
+```
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/treelogo.png){.logo}
+
+```{=html}
+<style type="text/css">
+
+.title { display: none; }
+
+</style>
+```
 # **MurTree Resources**
 
-These additional resources encompass supplementary materials detailing
-the evolution and architecture of MurTree. They feature additional
-references to preceding algorithms that contributed to its development,
-along with the foundational paper upon which this website is structured.
+These additional resources encompass supplementary materials detailing the evolution and architecture of MurTree. They feature additional references to preceding algorithms that contributed to its development, along with the foundational paper upon which this website is structured.
 
 ### **Foundational Paper and Githhub**
 
-1.Demirović, E., Lukina, A. S., Hebrard, E., Chan, J., Bailey, J.,
-Leckie, C., Ramamohanarao, K., Stuckey, P. J., & De Raedt, L.. (n.d.).
-MurTree: Optimal Decision Trees via Dynamic Programming and Search. 23.
+1.Demirović, E., Lukina, A. S., Hebrard, E., Chan, J., Bailey, J., Leckie, C., Ramamohanarao, K., Stuckey, P. J., & De Raedt, L.. (n.d.). MurTree: Optimal Decision Trees via Dynamic Programming and Search. 23.
 
-2.MurTree/murtree. (n.d.). MurTree/murtree. Retrieved May 7, 2024, from
-<https://github.com/MurTree/murtree>
+2.MurTree/murtree. (n.d.). MurTree/murtree. Retrieved May 7, 2024, from <https://github.com/MurTree/murtree>
 
 ### **Previous work contributing to Design of MurTree**
 
@@ -28,7 +45,7 @@ MurTree: Optimal Decision Trees via Dynamic Programming and Search. 23.
         decision tree induction from itemset lattices. Data Mining and
         Knowledge Discovery, 21(1), 2010
 
-    2.   Nina Narodytska, Alexey Ignatiev, Filipe Pereira, and Joao
+    2.  Nina Narodytska, Alexey Ignatiev, Filipe Pereira, and Joao
         Marques-Silva. Learning optimal decision trees with SAT. In
         Proceedings of IJCAI, 2018
 
@@ -46,12 +63,12 @@ MurTree: Optimal Decision Trees via Dynamic Programming and Search. 23.
         lists for categorical data. The Journal of Machine Learning
         Research, 2017.
 
-    2.   Mohammed J Zaki and Karam Gouda. Fast vertical mining using
+    2.  Mohammed J Zaki and Karam Gouda. Fast vertical mining using
         diffsets. In Proceedings of SIGKDD, 2003.
 
 3.  Misclassification
 
-    1.   Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
+    1.  Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
         Quimper, and Pierre Schaus.Learning optimal decision trees using
         constraint programming. In Proceedings of CP, 2019.
 
@@ -59,14 +76,16 @@ MurTree: Optimal Decision Trees via Dynamic Programming and Search. 23.
         Learning optimal decision trees with maxsat and its integration
         in adaboost. In Proceedings of IJCAI, 2020.
 
-4.   Frequency Counting for Mining
+4.  Frequency Counting for Mining
 
-    1.   Mohammed Javeed Zaki. Scalable algorithms for association
-        mining. IEEE Transactions on Knowledge and Data Engineering,
-        12(3), 2000.
+```         
+1.   Mohammed Javeed Zaki. Scalable algorithms for association
+    mining. IEEE Transactions on Knowledge and Data Engineering,
+    12(3), 2000.
 
-    2.   Albrecht Zimmermann and Luc De Raedt. Cluster-grouping: from
-        subgroup discovery to clustering. Machine Learning, 77(1), 2009.
+2.   Albrecht Zimmermann and Luc De Raedt. Cluster-grouping: from
+    subgroup discovery to clustering. Machine Learning, 77(1), 2009.
+```
 
 5.  Dynamic Programming and Search
 
@@ -74,7 +93,7 @@ MurTree: Optimal Decision Trees via Dynamic Programming and Search. 23.
         decision tree induction from itemset lattices. Data Mining and
         Knowledge Discovery, 21(1), 2010
 
-    2.   Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
+    2.  Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
         Quimper, and Pierre Schaus.Learning optimal decision trees using
         constraint programming. In Proceedings of CP, 2019.
 
@@ -83,7 +102,7 @@ MurTree: Optimal Decision Trees via Dynamic Programming and Search. 23.
 
 6.  Constraints and Caching
 
-    1.   Gaël Aglin, Siegfried Nijssen, and Pierre Schaus. Learning
+    1.  Gaël Aglin, Siegfried Nijssen, and Pierre Schaus. Learning
         optimal decision trees using caching branch-and-bound search. In
         Proceedings of AAAI, 2020a.
 
@@ -103,10 +122,11 @@ MurTree: Optimal Decision Trees via Dynamic Programming and Search. 23.
 
 7.  Nonlinear Metrics and Sparse
 
-    1.   Emir Demirović and Peter Stuckey. Optimal decision trees for
+    1.  Emir Demirović and Peter Stuckey. Optimal decision trees for
         nonlinear metrics. In Proceedings of AAAI, 2021.
 
     2.  Rafael Blanquero, Emilio Carrizosa, Cristina Molero-Río, and
         Dolores Romero Morales. Sparsity in optimal randomized
         classification trees. European Journal of Operational Research,
-        2020.
+
+        2020. 
