@@ -23,8 +23,6 @@ toc_float: true
 
 </style>
 
-
-
 ```{=html}
 <style type="text/css">
 
