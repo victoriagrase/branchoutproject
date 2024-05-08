@@ -10,6 +10,12 @@ toc_float: true
 
 .title { display: none; }
 
+<img src="C:/Users/VGSCHOOL/PHP2650/treelogo.png" alt="Logo">
+
+
+
+
+
 ```{=html}
 <style type="text/css">
 
