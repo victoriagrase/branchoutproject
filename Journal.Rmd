@@ -9,7 +9,6 @@ output:
     #code_folding: hide
 ---
 
-
 <body style="background-color:aliceblue;">
 
 ```{r setup, include=FALSE}
@@ -18,18 +17,89 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 # **Review of MurTree: Optimal Decision Trees**
 
-The Murtree Algorithm computes optimal classification trees by exhaustive search. The search space is exponentially large, but special measures are taken to efficiently iterate through all trees, exploit the overlap between trees, and avoid computing suboptimal decision trees.
-
+The Murtree Algorithm computes optimal classification trees by
+exhaustive search. The search space is exponentially large, but special
+measures are taken to efficiently iterate through all trees, exploit the
+overlap between trees, and avoid computing suboptimal decision trees.
 
 # **Core Equation**
 
-The following equation is the core foundation of the algorithm. The dynamic programming formulation of optimal classification trees is given by Figure 1 where input parameters consist of binary data set ⅅ with features 𝐹, an upper bound on depth ⅆ, and an upper bound on the number of feature nodes 𝑛. The output is the minimum number of misclassifications possible on the data given the input decision tree characteristics. Here ∅ indicated that tree is infeasible or not of interest since a better tree is known.
+The following equation is the core foundation of the algorithm. The
+dynamic programming formulation of optimal classification trees is given
+by Figure 1 where input parameters consist of binary data set ⅅ with
+features 𝐹, an upper bound on depth ⅆ, and an upper bound on the number
+of feature nodes 𝑛. The output is the minimum number of
+misclassifications possible on the data given the input decision tree
+characteristics. Here ∅ indicated that tree is infeasible or not of
+interest since a better tree is known.
 
-Notice that whatever you define as a top level header, automatically gets put into the table of contents bar on the left. 
+<style>
+.image{
+   position: center;
+    width: 600px;
+    height: 120px;
+}
+</style>
 
-## Second level header
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/mainequation.png){.image}
 
-You can add more headers by adding more hashtags. These won't be put into the table of contents
+# **Algorithm 1**
+
+The main algorithm is summarized using the following pseudocode where
+"caching and pruning" strategy is implemented for optimizing subtrees
+within a larger tree structure.
+
+-   The algorithm begins by checking for infeasibility where if the
+    upper bounds are negative or the classification node
+    misclassification exceeds the upper bound, the tree is considered
+    infeasible
+
+-   The cache is then queried to see if the optimal tree has been
+    computed. If the subtree is in the cache and meets the upper
+    boundary constraints, it is returned. Otherwise, infeasibility is
+    reported. Furthermore, additionally caching is done based on depth
+    and node constraints.
+
+-    The cache is then updated by using a similarity-based lower bound
+    if the optimal subtree is not in the cache. Here the new lower bound
+    replaces the old cached bound if the value is greater. The optimal
+    subtree is returned if found or reported infeasible if if exceed the
+    upper bound constraint
+
+-   Pruning is then attempted based on the lower bound stored in the
+    cache. If the lower bound matches the misclassification score of a
+    classification node, a classification node is returned
+
+-   The algorithm then considers a specialized procedure for subtrees
+    with a depth that is less than or equal to 2. If this is the case,
+    solutions for one, two, and three feature nodes are stored in the
+    cache, regardless of input requirements. After computation, the
+    corresponding subtree is returned if it is within the upper bound
+    limit otherwise, infeasibility is reported
+
+-   If none of the aforementioned conditions apply, the algorithm
+    exhaustively explores the search space through overlapping
+    recursions per the equation. This is detailed in Algorithm 2
+
+
+<style>
+.image{
+   position: center;
+    width: 500px;
+    height: 300px;
+}
+</style>
+
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algrotihm1description.png){.image}
+<style>
+.image{
+   position: center;
+    width: 300px;
+    height: 300px;
+}
+</style>
+
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm1.png){.image}
 
 ### third level header
 
@@ -37,38 +107,71 @@ Here's an even lower level header
 
 # My second post (note the order)
 
-2018 | 7 | 23 Last compiled: `r Sys.Date()`
+2018 \| 7 \| 23 Last compiled: `r Sys.Date()`
 
-I'm writing this tutorial going from the top down. And, this is how it will be printed. So, notice the second post is second in the list. If you want your most recent post to be at the top, then make a new post starting at the top. If you want the oldest first, do, then keep adding to the bottom
+I'm writing this tutorial going from the top down. And, this is how it
+will be printed. So, notice the second post is second in the list. If
+you want your most recent post to be at the top, then make a new post
+starting at the top. If you want the oldest first, do, then keep adding
+to the bottom
 
 # Adding R stuff
 
-So far this is just a blog where you can write in plain text and serve your writing to a webpage. One of the main purposes of this lab journal is to record your progress learning R. The reason I am asking you to use this process is because you can both make a website, and a lab journal, and learn R all in R-studio. This makes everything really convenient and in the sam place. 
+So far this is just a blog where you can write in plain text and serve
+your writing to a webpage. One of the main purposes of this lab journal
+is to record your progress learning R. The reason I am asking you to use
+this process is because you can both make a website, and a lab journal,
+and learn R all in R-studio. This makes everything really convenient and
+in the sam place.
 
-So, let's say you are learning how to make a histogram in R. For example, maybe you want to sample 100 numbers from a normal distribution with mean = 0, and standard deviation =1, and then you want to plot a histogram. You can do this right here by using an r code block, like this:
+So, let's say you are learning how to make a histogram in R. For
+example, maybe you want to sample 100 numbers from a normal distribution
+with mean = 0, and standard deviation =1, and then you want to plot a
+histogram. You can do this right here by using an r code block, like
+this:
 
 ```{r}
 samples <- rnorm(100, mean=0, sd=1)
 hist(samples)
 ```
 
-When you knit this R Markdown document, you will see that the histogram is printed to the page, along with the R code. This document can be set up to hide the R code in the webpage, just delete the comment (hashtag), from the cold folding option in the yaml header up top. For purposes of letting yourself see the code, and me see the code, best to keep it the way that it is. You learn all of these things and more can be customized in each R code block.
+When you knit this R Markdown document, you will see that the histogram
+is printed to the page, along with the R code. This document can be set
+up to hide the R code in the webpage, just delete the comment (hashtag),
+from the cold folding option in the yaml header up top. For purposes of
+letting yourself see the code, and me see the code, best to keep it the
+way that it is. You learn all of these things and more can be customized
+in each R code block.
 
 # The big idea
 
-Use this lab journal to record what you do in R. This way I will be able to see what you are doing and help you along the way. You will also be creating a repository of all the things you do. You can make posts about everything. Learning specific things in R (project unrelated), and doing things for the project that we will discuss at the beginning of the Fall semester. You can get started now by fiddling around with googling things, and trying stuff out in R. I've placed some helpful starting links in the links page on this website
+Use this lab journal to record what you do in R. This way I will be able
+to see what you are doing and help you along the way. You will also be
+creating a repository of all the things you do. You can make posts about
+everything. Learning specific things in R (project unrelated), and doing
+things for the project that we will discuss at the beginning of the Fall
+semester. You can get started now by fiddling around with googling
+things, and trying stuff out in R. I've placed some helpful starting
+links in the links page on this website
 
 # What can you do right now by yourself?
 
-It's hard to learn programming when you don't have specific problems that you are trying to solve. Everything just seems abstract.
+It's hard to learn programming when you don't have specific problems
+that you are trying to solve. Everything just seems abstract.
 
-I wrote an [introductory programming book that introduces R](https://crumplab.github.io/programmingforpsych/), and gives some [concrete problems for you to solve](https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html). 
+I wrote an [introductory programming book that introduces
+R](https://crumplab.github.io/programmingforpsych/), and gives some
+[concrete problems for you to
+solve](https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html).
 
-To get the hang of journaling and solving the problems to learn programming, my suggestion is that you use this .Rmd file to solve the problems. It would look like this:
+To get the hang of journaling and solving the problems to learn
+programming, my suggestion is that you use this .Rmd file to solve the
+problems. It would look like this:
 
 # Problem 1
 
-Do simple math with numbers, addition, subtraction, multiplication, division
+Do simple math with numbers, addition, subtraction, multiplication,
+division
 
 ```{r}
 1+2
@@ -97,7 +200,8 @@ d/e
 
 # Problem 3
 
-Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.
+Write code that will place the numbers 1 to 100 separately into a
+variable using for loop. Then, again using the seq function.
 
 ```{r}
 # for loop solution
@@ -127,4 +231,5 @@ print(a)
 
 # Replace this with problem 4
 
-And keep going. Try to solve the problems with different scripts that provide the same solution. Good luck, Happy coding.
+And keep going. Try to solve the problems with different scripts that
+provide the same solution. Good luck, Happy coding.

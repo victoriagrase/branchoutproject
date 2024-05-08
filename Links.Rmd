@@ -75,17 +75,17 @@ These additional resources encompass supplementary materials detailing the evolu
     2.  Hao Hu, Mohamed Siala, Emmanuel Hebrard, and Marie-José Huguet.
         Learning optimal decision trees with maxsat and its integration
         in adaboost. In Proceedings of IJCAI, 2020.
-
+          
+        
 4.  Frequency Counting for Mining
 
-```         
-1.   Mohammed Javeed Zaki. Scalable algorithms for association
-    mining. IEEE Transactions on Knowledge and Data Engineering,
-    12(3), 2000.
+    1.  Mohammed Javeed Zaki. Scalable algorithms for association
+        mining. IEEE Transactions on Knowledge and Data Engineering, 
+        12(3), 2000.
 
-2.   Albrecht Zimmermann and Luc De Raedt. Cluster-grouping: from
-    subgroup discovery to clustering. Machine Learning, 77(1), 2009.
-```
+    2. Albrecht Zimmermann and Luc De Raedt. Cluster-grouping: from
+      subgroup discovery to clustering. Machine Learning, 77(1), 2009.
+
 
 5.  Dynamic Programming and Search
 
