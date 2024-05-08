@@ -1,5 +1,4 @@
 ---
-title: "Optimization Tree"
 output: html_document
 toc: true
 toc_float: true
@@ -76,3 +75,6 @@ Here are some key aspects of the algorithm's motivation:
 7.  MurTree extends existing techniques and caching schemes, incorporates incremental solving options, refines lower-bounding techniques, and implements dynamic node exploration strategies.
 
 8.  In addition through empirical evaluation, the algorithm undergoes a detailed experimental study to analyze its effectiveness and scalability.
+
+
+Last updated: `r Sys.Date()`

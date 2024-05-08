@@ -1,19 +1,112 @@
 ---
-title: "Resources"
 output: html_document
 ---
 
-### R and R-Studio
+<body style="background-color:lemonchiffon;">
 
-[R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [R-studio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux. Students will be learning R in the stats labs using the lab manual []().
+# **MurTree Resources**
 
-### Additional R resources
+These additional resources encompass supplementary materials detailing
+the evolution and architecture of MurTree. They feature additional
+references to preceding algorithms that contributed to its development,
+along with the foundational paper upon which this website is structured.
 
-1. Google is great, Google your problem
-2. [Stackoverflow](https://stackoverflow.com) is great, google will often take you there because someone has already asked your question, and someone else has answered, usually many people have answered your question many ways.
-3. Danielle Navarro wrote a [free Psych Stats textbook using R](https://compcogscisydney.org/learning-statistics-with-r/), it's worth checking out (some of our textbook are based on Danielle's)
-4. I am currently writing another stats textbook (incorporating some of the above). You can read it while it's being made right here [https://crumplab.github.io/statistics/](https://crumplab.github.io/statistics/), also check out the lab manual for more specific things about doing various stats in R (also in draft right now) [https://crumplab.github.io/statisticsLab/](https://crumplab.github.io/statisticsLab/)
-5. Daniell Navarro recently made this website for introducing R, it's great, check it out (also made using this R markdown process): [http://compcogscisydney.org/psyr/](http://compcogscisydney.org/psyr/)
-6. Check out my slightly older programming book that also introduces R [https://crumplab.github.io/programmingforpsych/](https://crumplab.github.io/programmingforpsych/)
-7. This is the definitive guide for all things R Markdown (you will find this very useful as you get better at this skill): [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
+### **Foundational Paper and Githhub**
 
+1.Demirović, E., Lukina, A. S., Hebrard, E., Chan, J., Bailey, J.,
+Leckie, C., Ramamohanarao, K., Stuckey, P. J., & De Raedt, L.. (n.d.).
+MurTree: Optimal Decision Trees via Dynamic Programming and Search. 23.
+
+2.MurTree/murtree. (n.d.). MurTree/murtree. Retrieved May 7, 2024, from
+<https://github.com/MurTree/murtree>
+
+### **Previous work contributing to Design of MurTree**
+
+1.  Binarising
+
+    1.  Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
+        decision tree induction from itemset lattices. Data Mining and
+        Knowledge Discovery, 21(1), 2010
+
+    2.   Nina Narodytska, Alexey Ignatiev, Filipe Pereira, and Joao
+        Marques-Silva. Learning optimal decision trees with SAT. In
+        Proceedings of IJCAI, 2018
+
+    3.  Sicco Verwer and Yingqian Zhang. Learning optimal classification
+        trees using a binary linear program formulation. In Proceedings
+        of AAAI, 2019.
+
+    4.  Dimitris Bertsimas and Jack Dunn. Optimal classification trees.
+        Machine Learning, 106(7),2017.
+
+2.  Lower Bounding
+
+    1.  Elaine Angelino, Nicholas Larus-Stone, Daniel Alabi, Margo
+        Seltzer, and Cynthia Rudin. Learning certifiably optimal rule
+        lists for categorical data. The Journal of Machine Learning
+        Research, 2017.
+
+    2.   Mohammed J Zaki and Karam Gouda. Fast vertical mining using
+        diffsets. In Proceedings of SIGKDD, 2003.
+
+3.  Misclassification
+
+    1.   Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
+        Quimper, and Pierre Schaus.Learning optimal decision trees using
+        constraint programming. In Proceedings of CP, 2019.
+
+    2.  Hao Hu, Mohamed Siala, Emmanuel Hebrard, and Marie-José Huguet.
+        Learning optimal decision trees with maxsat and its integration
+        in adaboost. In Proceedings of IJCAI, 2020.
+
+4.   Frequency Counting for Mining
+
+    1.   Mohammed Javeed Zaki. Scalable algorithms for association
+        mining. IEEE Transactions on Knowledge and Data Engineering,
+        12(3), 2000.
+
+    2.   Albrecht Zimmermann and Luc De Raedt. Cluster-grouping: from
+        subgroup discovery to clustering. Machine Learning, 77(1), 2009.
+
+5.  Dynamic Programming and Search
+
+    1.  Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
+        decision tree induction from itemset lattices. Data Mining and
+        Knowledge Discovery, 21(1), 2010
+
+    2.   Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
+        Quimper, and Pierre Schaus.Learning optimal decision trees using
+        constraint programming. In Proceedings of CP, 2019.
+
+    3.  Thibaut Vidal and Maximilian Schiffer. Born-again tree
+        ensembles. In Proceedings of ICML,2020.
+
+6.  Constraints and Caching
+
+    1.   Gaël Aglin, Siegfried Nijssen, and Pierre Schaus. Learning
+        optimal decision trees using caching branch-and-bound search. In
+        Proceedings of AAAI, 2020a.
+
+    2.  Jimmy Lin, Chudi Zhong, Diane Hu, Cynthia Rudin, and Margo
+        Seltzer. Generalized and scalable optimal sparse decision trees.
+        In Proceedings of ICML, 2020.
+
+    3.  Sicco Verwer and Yingqian Zhang. Learning decision trees with
+        flexible constraints and objectives using integer optimization.
+        In Proceedings of CPAIOR, 2017.
+
+    4.  Florent Avellaneda. Efficient inference of optimal decision
+        trees. In Proceedings of AAAI,2020
+
+    5.  Xiyang Hu, Cynthia Rudin, and Margo Seltzer. Optimal sparse
+        decision trees. In Proceedings of NeurIPS, 2019.
+
+7.  Nonlinear Metrics and Sparse
+
+    1.   Emir Demirović and Peter Stuckey. Optimal decision trees for
+        nonlinear metrics. In Proceedings of AAAI, 2021.
+
+    2.  Rafael Blanquero, Emilio Carrizosa, Cristina Molero-Río, and
+        Dolores Romero Morales. Sparsity in optimal randomized
+        classification trees. European Journal of Operational Research,
+        2020.

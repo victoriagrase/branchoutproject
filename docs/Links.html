@@ -11,7 +11,7 @@
 
 
 
-<title>Resources</title>
+<title>Links.knit</title>
 
 <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -266,49 +266,114 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Resources</h1>
 
 </div>
 
 
-<div id="r-and-r-studio" class="section level3">
-<h3>R and R-Studio</h3>
-<p><a href="http://www.r-project.org">R</a> is a free open-source
-programming language that can be used for statistical analysis,
-data-simulation, graphing, and lots of other stuff. Another free program
-is <a href="http://www.rstudio.com">R-studio</a>, that provides a nice
-graphic interface for R. Download R first, then download R-studio. Both
-can run on PCs, Macs or Linux. Students will be learning R in the stats
-labs using the lab manual <a href=""></a>.</p>
+<body style="background-color:lemonchiffon;">
+<div id="murtree-resources" class="section level1">
+<h1><strong>MurTree Resources</strong></h1>
+<p>These additional resources encompass supplementary materials
+detailing the evolution and architecture of MurTree. They feature
+additional references to preceding algorithms that contributed to its
+development, along with the foundational paper upon which this website
+is structured.</p>
+<div id="foundational-paper-and-githhub" class="section level3">
+<h3><strong>Foundational Paper and Githhub</strong></h3>
+<p>1.Demirović, E., Lukina, A. S., Hebrard, E., Chan, J., Bailey, J.,
+Leckie, C., Ramamohanarao, K., Stuckey, P. J., &amp; De Raedt, L..
+(n.d.). MurTree: Optimal Decision Trees via Dynamic Programming and
+Search. 23.</p>
+<p>2.MurTree/murtree. (n.d.). MurTree/murtree. Retrieved May 7, 2024,
+from <a href="https://github.com/MurTree/murtree"
+class="uri">https://github.com/MurTree/murtree</a></p>
 </div>
-<div id="additional-r-resources" class="section level3">
-<h3>Additional R resources</h3>
+<div id="previous-work-contributing-to-design-of-murtree"
+class="section level3">
+<h3><strong>Previous work contributing to Design of
+MurTree</strong></h3>
 <ol style="list-style-type: decimal">
-<li>Google is great, Google your problem</li>
-<li><a href="https://stackoverflow.com">Stackoverflow</a> is great,
-google will often take you there because someone has already asked your
-question, and someone else has answered, usually many people have
-answered your question many ways.</li>
-<li>Danielle Navarro wrote a <a
-href="https://compcogscisydney.org/learning-statistics-with-r/">free
-Psych Stats textbook using R</a>, it’s worth checking out (some of our
-textbook are based on Danielle’s)</li>
-<li>I am currently writing another stats textbook (incorporating some of
-the above). You can read it while it’s being made right here <a
-href="https://crumplab.github.io/statistics/">https://crumplab.github.io/statistics/</a>,
-also check out the lab manual for more specific things about doing
-various stats in R (also in draft right now) <a
-href="https://crumplab.github.io/statisticsLab/">https://crumplab.github.io/statisticsLab/</a></li>
-<li>Daniell Navarro recently made this website for introducing R, it’s
-great, check it out (also made using this R markdown process): <a
-href="http://compcogscisydney.org/psyr/">http://compcogscisydney.org/psyr/</a></li>
-<li>Check out my slightly older programming book that also introduces R
-<a
-href="https://crumplab.github.io/programmingforpsych/">https://crumplab.github.io/programmingforpsych/</a></li>
-<li>This is the definitive guide for all things R Markdown (you will
-find this very useful as you get better at this skill): <a
-href="https://bookdown.org/yihui/rmarkdown/">https://bookdown.org/yihui/rmarkdown/</a></li>
+<li><p>Binarising</p>
+<ol style="list-style-type: decimal">
+<li><p>Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
+decision tree induction from itemset lattices. Data Mining and Knowledge
+Discovery, 21(1), 2010</p></li>
+<li><p>Nina Narodytska, Alexey Ignatiev, Filipe Pereira, and Joao
+Marques-Silva. Learning optimal decision trees with SAT. In Proceedings
+of IJCAI, 2018</p></li>
+<li><p>Sicco Verwer and Yingqian Zhang. Learning optimal classification
+trees using a binary linear program formulation. In Proceedings of AAAI,
+2019.</p></li>
+<li><p>Dimitris Bertsimas and Jack Dunn. Optimal classification trees.
+Machine Learning, 106(7),2017.</p></li>
+</ol></li>
+<li><p>Lower Bounding</p>
+<ol style="list-style-type: decimal">
+<li><p>Elaine Angelino, Nicholas Larus-Stone, Daniel Alabi, Margo
+Seltzer, and Cynthia Rudin. Learning certifiably optimal rule lists for
+categorical data. The Journal of Machine Learning Research,
+2017.</p></li>
+<li><p>Mohammed J Zaki and Karam Gouda. Fast vertical mining using
+diffsets. In Proceedings of SIGKDD, 2003.</p></li>
+</ol></li>
+<li><p>Misclassification</p>
+<ol style="list-style-type: decimal">
+<li><p>Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
+Quimper, and Pierre Schaus.Learning optimal decision trees using
+constraint programming. In Proceedings of CP, 2019.</p></li>
+<li><p>Hao Hu, Mohamed Siala, Emmanuel Hebrard, and Marie-José Huguet.
+Learning optimal decision trees with maxsat and its integration in
+adaboost. In Proceedings of IJCAI, 2020.</p></li>
+</ol></li>
+<li><p>Frequency Counting for Mining</p></li>
 </ol>
+<pre><code>1.   Mohammed Javeed Zaki. Scalable algorithms for association
+    mining. IEEE Transactions on Knowledge and Data Engineering,
+    12(3), 2000.
+
+2.   Albrecht Zimmermann and Luc De Raedt. Cluster-grouping: from
+    subgroup discovery to clustering. Machine Learning, 77(1), 2009.</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Dynamic Programming and Search</p>
+<ol style="list-style-type: decimal">
+<li><p>Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
+decision tree induction from itemset lattices. Data Mining and Knowledge
+Discovery, 21(1), 2010</p></li>
+<li><p>Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
+Quimper, and Pierre Schaus.Learning optimal decision trees using
+constraint programming. In Proceedings of CP, 2019.</p></li>
+<li><p>Thibaut Vidal and Maximilian Schiffer. Born-again tree ensembles.
+In Proceedings of ICML,2020.</p></li>
+</ol></li>
+<li><p>Constraints and Caching</p>
+<ol style="list-style-type: decimal">
+<li><p>Gaël Aglin, Siegfried Nijssen, and Pierre Schaus. Learning
+optimal decision trees using caching branch-and-bound search. In
+Proceedings of AAAI, 2020a.</p></li>
+<li><p>Jimmy Lin, Chudi Zhong, Diane Hu, Cynthia Rudin, and Margo
+Seltzer. Generalized and scalable optimal sparse decision trees. In
+Proceedings of ICML, 2020.</p></li>
+<li><p>Sicco Verwer and Yingqian Zhang. Learning decision trees with
+flexible constraints and objectives using integer optimization. In
+Proceedings of CPAIOR, 2017.</p></li>
+<li><p>Florent Avellaneda. Efficient inference of optimal decision
+trees. In Proceedings of AAAI,2020</p></li>
+<li><p>Xiyang Hu, Cynthia Rudin, and Margo Seltzer. Optimal sparse
+decision trees. In Proceedings of NeurIPS, 2019.</p></li>
+</ol></li>
+<li><p>Nonlinear Metrics and Sparse</p>
+<ol style="list-style-type: decimal">
+<li><p>Emir Demirović and Peter Stuckey. Optimal decision trees for
+nonlinear metrics. In Proceedings of AAAI, 2021.</p></li>
+<li><p>Rafael Blanquero, Emilio Carrizosa, Cristina Molero-Río, and
+Dolores Romero Morales. Sparsity in optimal randomized classification
+trees. European Journal of Operational Research,</p>
+<ol start="2020" style="list-style-type: decimal">
+<li></li>
+</ol></li>
+</ol></li>
+</ol>
+</div>
 </div>
 
 
