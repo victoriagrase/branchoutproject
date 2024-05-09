@@ -24,14 +24,20 @@ overlap between trees, and avoid computing suboptimal decision trees.
 
 # **Core Equation**
 
-The following equation is the core foundation of the algorithm. The
-dynamic programming formulation of optimal classification trees is given
-by Figure 1 where input parameters consist of binary data set ⅅ with
-features 𝐹, an upper bound on depth ⅆ, and an upper bound on the number
-of feature nodes 𝑛. The output is the minimum number of
-misclassifications possible on the data given the input decision tree
-characteristics. Here ∅ indicated that tree is infeasible or not of
-interest since a better tree is known.
+The following equation is the core foundation of the algorithm. The input parameters include: the dataset $D$ , $F$ features (a variable that encodes information about an object ), an upper bound on depth $d$, and an upper bound on the number of feature nodes $n$ [1]. The output is the minimum number of misclassifications. The first and second case places constraints on the $n$ and $d$ to avoid redundancy. For the first case, if the specified upper bound on the number of feature nodes $n$ is greater than $2^d-1$, where $d$ is the upper bound on the depth of the decision tree, then the function recursively call itself with $n$ replaced by $2^d-1$. The maximum number of nodes in a binary tree of depth $d$ is $2^d-1$, as each node in the tree has at most two child nodes. So, if the specified upper bound on the number of feature nodes exceeds the maximum number of nodes possible at depth $d$, the function adjusts $n$ to $2^d-1$ to adhere to this constraint. For the second case, if the specified upper bound on the depth of the decision tree $d$ is greater than the number of feature nodes $n$, then the function resets the depth limit to be equal to the limit on the number of feature nodes, ensuring that the depth of the decision tree does not exceed the maximum number of nodes specified.
+
+The third case captures the situation where the node must be declared as a classification node, i.e., the node is labelled according to the majority class [1]. Here, if upper bound on the number of feature nodes $n$ is equal to the depth of the decision tree $d$ or the upper bound on the depth of the decision tree $d$ is equal to zero, then the function returns the minimum of the cardinality (the total number of unique elements in a set) of the positive class instances $|D^+|$ and the negative class instances $|D^-|$ in the dataset $D$. The fourth case involves a recursive calculation of the minimum misclassification score among all possible combinations of splitting a node into two child nodes, considering different features $f$ and different number of feature nodes $i$ from $0$ to $n-1$
+
+For each feature $f$ in the set $F$, and for each possible number of feature nodes $i$ from $0$ to $n-1$:
+
+-   $T(D(f), d-1,i)$ computes the misclassification score when splitting the dataset $D$ using feature $f$ into two subsets and recursively building a decision tree of depth $d-1$ with $i$ feature nodes in one of the child nodes.
+
+-   $T(D(\bar{f}), d-1,n-i-1)$ computes the misclassification score when not using feature $f$ ( $\bar{f}$ ) for splitting, recursively building a decision tree of depth $d-1$ with $n-i-1$ feature nodes in one of the child nodes.
+
+-   The total misclassification score is the sum score of splitting at the current node using feature $f$ and not using feature $f$, respectively.
+
+The min function then selects the combination of feature and number of feature nodes that results in the minimum total cost among all possible combinations.
+
 
 <style>
 .image1{
@@ -45,41 +51,25 @@ interest since a better tree is known.
 
 # **Algorithm 1**
 
-The main algorithm is summarized using the following pseudocode where
-"caching and pruning" strategy is implemented for optimizing subtrees
-within a larger tree structure.
+The input parameters include: a data set $D$ consisting of positive $D^+$ and negative $D^-$ instances, branch information of the subtree $B$, the depth $d$, the number of feature nodes $n$. Additionally, an input parameter for an upper bound that represents a limit on the number of misclassification before the tree is deemed infeasible, i.e., not of interest for example since a better tree is known [1]. The output is an optimal classification tree considering the input constraints or indication that no such tree exists (infeasible).
 
--   The algorithm begins by checking for infeasibility where if the
-    upper bounds are negative or the classification node
-    misclassification exceeds the upper bound, the tree is considered
-    infeasible
+In lines 2-8, the algorithm starts by checking if the upper bound $UB$ is negative. Furthermore, it checks if the misclassification score of $T$ exceeds the upper bound $UB$ given that depth $d$ or number of feature nodes $n$ equals $0$. If so, infeasibility is returned.
 
--   The cache is then queried to see if the optimal tree has been
-    computed. If the subtree is in the cache and meets the upper
-    boundary constraints, it is returned. Otherwise, infeasibility is
-    reported. Furthermore, additionally caching is done based on depth
-    and node constraints.
+In lines 9-14, the algorithm then checks if the optimal subtree is in the cache. The cache includes information (the lower bound and/or the optimal root node of the subtree under constraints on the depth and number of feature nodes, which includes the root feature, the number of feature nodes in its left and right children, and the misclassification score) about the computed optimal subtree. If the optimal subtree is in the cache, it is retrieved and stored in $T$, the algorithm checks if the misclassification score of the optimal subtree $T$ is lower than or equal to the upper bound $UB$ . If this is the case, then $T$ is returned as the optimal subtree, otherwise infeasibility is reported.
 
--    The cache is then updated by using a similarity-based lower bound
-    if the optimal subtree is not in the cache. Here the new lower bound
-    replaces the old cached bound if the value is greater. The optimal
-    subtree is returned if found or reported infeasible if if exceed the
-    upper bound constraint
+In line 15, the algorithm updates the cache using similarity-based lower bound $UpdateCacheUsingSimilarity(D,B,d,n)$ assuming that the optimal subtree is not in the cache. The optimal solution may be found in the process. Here, given a dataset $D_{new}$ for a node, the method helps to derive a lower bound by considering the previously computed optimal decision tree using the $D_{old}$ . It considers the difference in the number of instances between $D_{old}$ and $D_{new}$ . Given the limit on the depth $d$ and number of feature nodes $n$, a dataset $D_{new}$ , and the dataset $D_{old}$ with $T(D_{old},d,n)$ as the misclassification of $D_{old}$. The similarity-based lower bound is defined as,
 
--   Pruning is then attempted based on the lower bound stored in the
-    cache. If the lower bound matches the misclassification score of a
-    classification node, a classification node is returned
+$$ LB(D_{new},D_{old},d,n)=T(D_{old,d,n})-|D_{out}|, \hspace{3cm} [1] $$
 
--   The algorithm then considers a specialized procedure for subtrees
-    with a depth that is less than or equal to 2. If this is the case,
-    solutions for one, two, and three feature nodes are stored in the
-    cache, regardless of input requirements. After computation, the
-    corresponding subtree is returned if it is within the upper bound
-    limit otherwise, infeasibility is reported
+which is a lower bound which is a lower bound for the number of misclassifications of the optimal decision tree for the dataset $D_{new}$ of a tree depth $d$ with $n$ feature nodes [1].
 
--   If none of the aforementioned conditions apply, the algorithm
-    exhaustively explores the search space through overlapping
-    recursions per the equation. This is detailed in Algorithm 2
+In lines 16-21, the algorithm checks if the optimal solution ($updated\_optimal\_solution$) was found in the process, if so it checks if the misclassification score is lower than or equal to the upper bound $UB$. If so, then the optimal decision tree $T$ is returned. Otherwise, infeasibility is reported.
+
+In lines 22-26, the algorithm attempts to prune based on the updated lower bound stored in the cache. It retrieves the lower bound where $LB$ is the $RetrieveLowerBoundFromCache(D,B,d,n)$ and checks if the updated lower bound $LB$ is greater than the upper bound $UB$. If so, infeasibility is reported. If $LB$ is equal to the misclassification score of the classification node, a classification node is returned.
+
+In lines 27-32, the algorithm checks if the depth $d$ is less than or equal to 2. If so then, the specialized algorithm for tree of depth two (explained in Algorithm 4) ($SpecialisedDepthTwoAlgorithm(D,B,d,n)$) is implemented. If the misclassification score from the optimal tree $T$ is less than or equal to the upper bound $UB$, then $T$ is returned as the optimal decision tree. Otherwise, infeasibility is reported.
+
+In line 33, the algorithm considers the general case (Core Equation case 4), where the algorithm exhaustively explores the search space through overlapping recursions [1]. This is detailed in Algorithm 2.
 
 
 <style>

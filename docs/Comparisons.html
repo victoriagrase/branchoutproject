@@ -348,32 +348,88 @@ div.tocify {
 
 
 <body style="background-color:aliceblue;">
-<div id="my-first-post" class="section level1">
-<h1>My first post</h1>
-<p>2018 | 7 | 23 Last compiled: 2024-05-08</p>
-<p>Notice that whatever you define as a top level header, automatically
-gets put into the table of contents bar on the left.</p>
-<div id="second-level-header" class="section level2">
-<h2>Second level header</h2>
-<p>You can add more headers by adding more hashtags. These won’t be put
-into the table of contents</p>
-<div id="third-level-header" class="section level3">
-<h3>third level header</h3>
-<p>Here’s an even lower level header</p>
+<div id="scalability-and-tuning-of-parameters" class="section level1">
+<h1>Scalability and Tuning of parameters</h1>
+<p>Initially, the creators aimed to assess various parameters, such as
+incremental frequency computation, incremental solving, similarity lower
+bounding, in-order feature selection, dynamic node selection, and
+dataset-based cache. During the tuning process, the algorithm underwent
+evaluation based on runtime performance and various metrics. Benchmark
+results were analyzed, and settings, where the differences were deemed
+insignificant, were excluded from further consideration in the tuning
+studies.</p>
+<div id="caching-strategy" class="section level2">
+<h2>Caching Strategy</h2>
+<p>For the varying of the cache strategy which is an optimization
+technique used to speed up computer programs by using the data storage
+of expensive function calls and returning them when the same inputs are
+encountered again. (Memoisation) And for each combination keep a
+consistent depth of depth of 3 to 4 and task the algorithms to compute
+fifteen optimal decision trees, one tree for each value of n ∈ [1, 15].
+After tuning the parameters, it became evident that the inclusion of the
+cache dataset significantly improved performance. Interestingly, branch
+caching demonstrated a nuanced advantage over cache entries, showcasing
+a subtle yet discernible difference in performance metrics. This
+observation underscores the importance of carefully considering caching
+strategies to optimize algorithmic efficiency and overall computational
+outcomes.</p>
+</div>
+<div id="lower-bound-similarity-and-incremental-frequency"
+class="section level2">
+<h2>Lower Bound Similarity and Incremental Frequency</h2>
+<p>Activating lower bound similarity and incremental frequency
+computation in this configuration retained the same parameters as the
+previous setting, with a similar exclusion of insignificant benchmarks.
+The runtime analysis reaffirmed the importance of incremental
+computation over recomputation from scratch, highlighting its role in
+enhancing computational efficiency. Additionally, setting a lower bound
+contributed to reduced runtimes, emphasizing its significance in
+streamlining the computational process and optimizing performance.</p>
+</div>
+<div id="node-selection-and-feature-selection-strategy"
+class="section level2">
+<h2>Node Selection and Feature Selection Strategy</h2>
+<p>Using the Gini coefficients the algorithm is run now including
+varying the feature selection strategy and the node selection strategy
+which is either post-order or dynamic. I FEEL LIKE WE PUT WHAT WE
+LEARNED AND PERFORMED IN CLASS HERE!!! Since we have previously
+evaluated and adjusted the lower bound and incremental frequency
+parameters, setting these parameters appropriately demonstrates that
+random feature selection results in longer computational times due to
+the additional overhead of exploring a larger feature space. Dynamic
+node selection is consistently but minimally better to a fixed
+post-order selection because it allows for adaptability and
+responsiveness to the evolving structure of the decision tree. The
+dynamic node selection can adjust its strategy based on real-time
+information, leading to more efficient and effective decision-making
+processes.</p>
+</div>
+<div id="binary-features-and-tree-depth-impact" class="section level2">
+<h2>Binary Features and Tree Depth impact</h2>
+<p>In terms of scalability, the algorithm’s runtime is most
+significantly impacted by the depth of the tree, with the number of
+binary features also playing a notable role. However, drawing conclusive
+statements on the impact of the number of features on runtime is
+challenging due to the pruning mechanism inherent in the MurTree
+algorithm. Since pruning largely depends on the dataset structure,
+duplicating features would not provide definitive insights into their
+impact on runtime. Instead, it is more appropriate to consider the
+computational complexity of our algorithm and the number of possible
+decision trees as indicative measures of the influence of the number of
+binary features and the sparsity of the feature vectors on runtime.</p>
 </div>
 </div>
-</div>
-<div id="my-second-post-note-the-order" class="section level1">
-<h1>My second post (note the order)</h1>
-<p>2018 | 7 | 23 Last compiled: 2024-05-08</p>
+<div id="dl8.5-vs.-murtree" class="section level1">
+<h1>DL8.5 vs. MurTree</h1>
+<p>2018 | 7 | 23 Last compiled: 2024-05-09</p>
 <p>I’m writing this tutorial going from the top down. And, this is how
 it will be printed. So, notice the second post is second in the list. If
 you want your most recent post to be at the top, then make a new post
 starting at the top. If you want the oldest first, do, then keep adding
 to the bottom</p>
 </div>
-<div id="adding-r-stuff" class="section level1">
-<h1>Adding R stuff</h1>
+<div id="random-forests-and-murtree" class="section level1">
+<h1>Random FOrests and MurTree</h1>
 <p>So far this is just a blog where you can write in plain text and
 serve your writing to a webpage. One of the main purposes of this lab
 journal is to record your progress learning R. The reason I am asking
