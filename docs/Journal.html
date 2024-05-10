@@ -562,6 +562,114 @@ class="image3" /></p>
 </div>
 <div id="algorithm-2" class="section level1">
 <h1><strong>Algorithm 2</strong></h1>
+<p>The general case of the core equation used in the main algorithm
+(Algorithm 1) is implemented if none of the conditions took place in
+Algorithm 1. Similar to Algorithm 1, the input parameters include: a
+data set <span class="math inline">\(D\)</span> consisting of positive
+<span class="math inline">\(D^+\)</span> and negative <span
+class="math inline">\(D^-\)</span> instances, branch information of the
+subtree <span class="math inline">\(B\)</span>, the depth <span
+class="math inline">\(d\)</span>, the number of feature nodes <span
+class="math inline">\(n\)</span>. Additionally, an input parameter for
+an upper bound that represents a limit on the number of
+misclassification before the tree is deemed infeasible, i.e., not of
+interest for example since a better tree is known [1]. The output is an
+optimal classification tree considering the input constraints or
+indication that no such tree exists (infeasible).</p>
+<p>In lines 2-4, the algorithm uses a single classification node as the
+initial <span class="math inline">\(T_{best}\)</span> solution. If the
+misclassification score of the classification node is greater than the
+upper bound <span class="math inline">\(UB\)</span> then the initial
+solution <span class="math inline">\(T_{best}\)</span> single
+classification node is reported as infeasible.</p>
+<p>In lines 5, the lower bound <span class="math inline">\(LB\)</span>
+is retrieved from the cache</p>
+<p>In line 6, the refined lower bound <span
+class="math inline">\(RLB\)</span> is defined. The refined lower bound
+<span class="math inline">\(RLB\)</span> is defined as,</p>
+<p><span class="math display">\[
+LB_{local}(D,f,d,n_{left},n_{right})=LB(D(\bar{f},d-1,n_{left}))+LB(D(f,d-1,n_{right}))
+\hspace{2cm} \]</span> <span class="math display">\[
+RLB(D,d,n)=\min{\{LB_{local}(D,f,d,n_{left},n_{right})|f \epsilon F
+\land n_{left}+n_{right}=n-1 \}} \hspace{2cm} [1] \]</span></p>
+<p>Here bound <span class="math inline">\(RLB\)</span> considers all
+possible assignments of features and numbers of feature nodes to the
+root and its children, and selects the minimum sum of the lower bounds
+of its children [1].</p>
+<p>In lines 7-8, the algorithm computes the allowed number of nodes for
+child subtrees. In line 7 where <span class="math inline">\(n_{max}
+\leftarrow min{\{2^{(d-1)}-1,n-1\}}\)</span>, <span
+class="math inline">\(2^{(d-1)}\)</span> calculates the maximum number
+of possible feature nodes possible in the subtree with depth <span
+class="math inline">\(d-1\)</span>. Recall from the core equation that a
+decision tree with depth <span class="math inline">\(d-1\)</span> can
+have at most <span class="math inline">\(2^{d-1}\)</span> nodes and the
+<span class="math inline">\(-1\)</span> accounts for the root node.
+Here, <span class="math inline">\(n-1\)</span> is the upper bound on the
+number of feature nodes. The minimum of these two values is selected. In
+line 8, <span class="math inline">\(n_{min} \leftarrow
+(n-1-n_{max})\)</span> calculates the remaining number of feature nodes
+after accounting the maximum allowed nodes (<span
+class="math inline">\(n_{max}\)</span> ).</p>
+<p>For line 9, the algorithm begins the for loop for splitting feature
+<span class="math inline">\(f\)</span> in the set <span
+class="math inline">\(F\)</span>.</p>
+<p>In lines 10-11, the algorithm checks if the current best
+classification node <span class="math inline">\(T_{best}\)</span> is the
+optimal node by confirming if it is equal to the lower bound <span
+class="math inline">\(LB\)</span>. If so, the loop stops as the optimal
+decision tree has been found.</p>
+<p>In lines 12-13, attempt to ensure that nondiscriminary splits are
+avoided. The condition if <span class="math inline">\(|D(\bar{f})|=0
+\lor |D(f)|=0\)</span> implies that after splitting the dataset <span
+class="math inline">\(D\)</span> based on feature <span
+class="math inline">\(f\)</span>, one of the subsets is empty. This
+means that the feature <span class="math inline">\(f\)</span> does not
+provide any discriminatory power for separating the classes in the
+dataset or, does not help to separating the classes effectively. These
+splits do not provide useful information for classification. By
+excluding these non-discriminatory splits, the decision tree becomes
+more efficient and less prone to overfitting.</p>
+<p>In line 14, the algorithm considers all possible combinations of
+distributing the remaining node budget amongst its left <span
+class="math inline">\(n_L\)</span> and right <span
+class="math inline">\(n_R\)</span> subtrees. A nested for loop begins
+for each feature split where the <span
+class="math inline">\(n_L\)</span> values are in the interval <span
+class="math inline">\([n_{min}, n_{max}]\)</span> .</p>
+<p>In lines 15-17, the algorithm <span class="math inline">\(n_{R}
+\leftarrow n-1-n_{L}\)</span> calculates the difference between the
+total number of number of feature nodes and the number of feature nodes
+on the left subtree and assigns it to <span
+class="math inline">\(n_R\)</span> (this difference represents the
+number of feature nodes available for use on the right subtree of the
+split). An upper bound <span class="math inline">\(UB&#39;\)</span> is
+then imposed by getting the minimum between the upper bound <span
+class="math inline">\(UB\)</span> and the misclassifications score of
+the best tree <span class="math inline">\(T_{best}\)</span> found thus.
+Algorithm 3 is then used to compute the optimal tree given the feature
+of the root and number of features in children subtrees (tree
+configuration) or reports a lower local bound. In lines 18-21, if <span
+class="math inline">\(T\)</span> is not considered infeasible then the
+best tree <span class="math inline">\(T_{best}\)</span> is returned as
+the optimal tree <span class="math inline">\(T\)</span>. Otherwise, the
+refined lower bound <span class="math inline">\(RLB\)</span> is used by
+getting the minimum between the refined lower bound and local lower
+bound <span class="math inline">\(LB_{local}\)</span> . This is where
+the nested for loop concludes</p>
+<p>In lines 22-30, after exhausting all feature splits for the root
+node, if the misclassification score of the best tree thus far <span
+class="math inline">\(T_{best}\)</span> is lower than or equal to the
+upper bound <span class="math inline">\(UB\)</span>, it is stored in
+cache as the optimal subtree. Otherwise, the lower bound <span
+class="math inline">\(LB\)</span> is computed and stored in the cache.
+The refined lower bound is combined with the upper bound to get a lower
+bound for the instance where no optimal subtree with less than the upper
+bound <span class="math inline">\(UB\)</span> could be found. This done
+using:</p>
+<p><span class="math display">\[ T(D,d,n) \geq max{\{RLB(D,d,n), UB+1\}}
+\hspace{3cm} [1] \]</span></p>
+<p>The optimal tree is then returned.</p>
 <img
 src="images/algorithm2.png"
 class="image1" />
