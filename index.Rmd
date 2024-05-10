@@ -14,9 +14,19 @@ toc_float: true
     height: 250px;
     z-index: 999; /* Ensure the logo appears above other content */
 }
+.quote {
+   position: fixed;
+   top: 320px; /* Adjust this value to position the text below the logo */
+   left: 20px; /* Adjust this value to align the text with the logo */
+   font-family: Arial, sans-serif; /* Adjust font if necessary */
+   font-size: 10px; /* Adjust font size if necessary */
+   color: black; /* Adjust text color if necessary */
+}
 </style>
 
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/treelogo.png){.logo}
+
+<div class="quote">"Planting the seeds of optimization, one branch at a time"</div>
 
 
 
@@ -36,15 +46,26 @@ Optimal decision trees of small size naturally fit within the scope of explainab
 
 Here is a visual example of a simple decision tree:
 
-<style>
-.image{
-   position: center;
-    width: 500px;
-    height: 300px;
-}
-</style>
+<html>
+<head>
+    <style>
+        .image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
 
-![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/simpletree.png){.image}
+<!-- Image -->
+<img src="C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/simpletree.png" alt="Image" class="image">
+
+</body>
+</html>
+
 
 
 

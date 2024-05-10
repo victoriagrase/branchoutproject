@@ -362,10 +362,21 @@ div.tocify {
     height: 250px;
     z-index: 999; /* Ensure the logo appears above other content */
 }
+.quote {
+   position: fixed;
+   top: 320px; /* Adjust this value to position the text below the logo */
+   left: 20px; /* Adjust this value to align the text with the logo */
+   font-family: Arial, sans-serif; /* Adjust font if necessary */
+   font-size: 10px; /* Adjust font size if necessary */
+   color: black; /* Adjust text color if necessary */
+}
 </style>
 <p><img
 src="images/treelogo.png"
 class="logo" /></p>
+<div class="quote">
+“Planting the seeds of optimization, one branch at a time”
+</div>
 <style type="text/css">
 
 .title { display: none; }
@@ -385,16 +396,23 @@ decision trees of small size naturally fit within the scope of
 explainable AI, as their reduced size is more convenient for human
 interpretation.</p>
 <p>Here is a visual example of a simple decision tree:</p>
+<html>
+<head>
 <style>
-.image{
-   position: center;
-    width: 500px;
-    height: 300px;
-}
-</style>
-<p><img
-src="images/simpletree.png"
-class="image" /></p>
+        .image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<!-- Image -->
+<p><img src="images/simpletree.png" alt="Image" class="image"></p>
+</body>
+</html>
 <div id="what-is-murtree" class="section level2">
 <h2><strong>What is MurTree?</strong></h2>
 <p>Murtree introduces an innovative approach to constructing optimal

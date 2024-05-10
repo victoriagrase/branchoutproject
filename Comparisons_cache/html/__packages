@@ -9,3 +9,4 @@ rpart
 rpart.plot
 factoextra
 Deriv
+randomForest

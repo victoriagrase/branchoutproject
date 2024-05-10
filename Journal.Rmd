@@ -40,14 +40,16 @@ The min function then selects the combination of feature and number of feature n
 
 
 <style>
-.image1{
-   position: center;
-    width: 600px;
-    height: 120px;
+.image1 {
+   display: block;
+   margin: auto;
+   width: 600px;
+   height: 120px;
 }
 </style>
 
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/mainequation.png){.image1}
+
 
 # **Algorithm 1**
 
@@ -71,26 +73,34 @@ In lines 27-32, the algorithm checks if the depth $d$ is less than or equal to 2
 
 In line 33, the algorithm considers the general case (Core Equation case 4), where the algorithm exhaustively explores the search space through overlapping recursions [1]. This is detailed in Algorithm 2.
 
-
 <style>
-.image1{
-   position: center;
-    width: 600px;
-    height: 120px;
+.image1 {
+   display: block;
+   margin: auto;
+   width: 600px;
+   height: 120px;
 }
 </style>
 
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algrotihm1description.png){.image1}
-<style>
-.image3{
-   position: center;
-   left: 50px;
-    width: 500px;
-    height: 500px;
-}
-</style>
 
-![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm1.png){.image3}
+
+<html>
+<head>
+    <style>
+        .image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 650px;
+            height: 650px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Image -->
+<img src="C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm1.png" alt="Image" class="image">
 
 # **Algorithm 2**
 
@@ -125,14 +135,20 @@ $$ T(D,d,n) \geq max{\{RLB(D,d,n), UB+1\}} \hspace{3cm} [1] $$
 The optimal tree is then returned.
 
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm2.png){.image1}
-<style>
-.image5{
-   position: center;
-   left: 50px;
-    width: 550px;
-    height: 600px;
-}
-</style>
+
+<html>
+<head>
+    <style>
+        .image5{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 650px;
+            height: 680px;
+        }
+    </style>
+</head>
+<body>
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm2description.png){.image5}
 
 
@@ -152,21 +168,76 @@ In lines 8-10, the algorithm checks if the left subtree is infeasible. If so, th
 In lines 11-18, the upper bound for the right subtree $UB_{R}$ is obtained by getting the difference between the upper bound $UB$ and the misclassification score of the left optimal subtree $T_{L}$ . From the pseudocode, we observe that it is not needed to compute $UB_R$ using the cache if the left child is infeasible. The optimal right subtree is then stored in $T_{R}$. If the $T_{R}$ is feasible, a tree with including the root feature $f_{root}$ and optimal left and right children subtrees ($T_{L},T_{R}$) is stored in $T$ . $T$ is then returned as the optimal solution along with the misclassification score of $T$. Otherwise, the local lower bound is computed and returned.
 
 In lines 19-20, the algorithm repeats the process for the right subtree first.
-![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm3.png){.image3}
+
+<html>
+<head>
+    <style>
+        .image9{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 700px;
+            height: 650px;
+        }
+    </style>
+</head>
+<body>
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm3.png){.image9}
 
 
 
 # **Algorithm 4**
 
-![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm4.png){.image3}
+This algorithm is implemented in Algorithm 1 for small tree instances where optimal classification trees of depth two with three nodes are computed. The input parameter is a data set $D$ consisting of positive $D^+$ and negative $D^-$ instances.
+
+In lines 2-3, the specialized algorithm begins by initializing frequency counters for each individual feature ( $FQ^{+}(f_{i})$ and $FQ^{-}(f_{i})$ ) ,for positive and negative instances. The frequency counters pairs of features $f_{i}$ and $f_{j}$ where $i$ is less than $j$ are also initialized ( $FQ +(f_{i}, f_{j})$ and $FQ - (f_{i}, f_{j})$ ), for positive and negative instances.
+
+In lines 4-9 (Step 1), the algorithm iterates through each positive instance $fv$ in the dataset $D^{+}$ . For each feature $f_{i}$ in the instance, the frequency counter $FQ+ (F_{i})$ is incremented. For each pair of features $f_{i}$ and $f_{j}$ (where $i$ is less than $j$) in the instance, the frequency counter $FQ + (f_{i}, f_{j})$ is incremented. Frequency counters for negative instances $FQ-(f_{i})$ and $FQ -(f_{i}, f_{j})$ are also computed using the dataset $D^-$.
+
+In lines 10-18 (Step 2), the algorithm computes the optimal decision tree from the frequency counters $FQ^+$ and $FQ^-$. It exploits the frequency counts to efficiently enumerate decision trees without needing to explicitly refer to the data [1]. This provides a substantial speed-up compared to iterating through features and splitting data as given in the dynamic programming formulation (Eq. 1) for decision trees of depth two [1]. Two nested for loops iterate through each pair of features $f_i$ and $f_j$ , excluding cases where $i$ is equal to $j$ . The classification score for a classification node with all instances of $D$ containing both features $f_i$ and $f_j$ is then computed using,
+
+$$ CS(f_{i},f_{j}) = min{\{FQ^{+}(f_{i},f_{j}), FQ^{-}(f_{i},f_{j})\}} \hspace{3cm} [1] $$
+
+This is implemented in lines 12 and 13 where the classification scores $CS(\bar{f_{i}},f_{j})$ and $CS(\bar{f_{i} },\bar{f_{j}})$ are computed which is the minimum of the frequency counts$FQ^{+}(\bar{f_{i}},f_{j})$ and $FQ^{-}(\bar{f_{i}},f_{j})$ and $FQ^{+}(\bar{f_{i}},\bar{f_{j}})$ and $FQ^{-}(\bar{f_{i}},\bar{f_{j}})$, respectively. The misclassification score of the left or right subtree is computed using,
+
+$$ MS_{left}(f_{left}) = CS(\bar{f_{root}}, \bar{f_{left}})+ CS(\bar{f_{root}},f_{left}) \hspace{2cm}$$
+
+$$ MS_{right}(f_{right}) = CS(\bar{f_{root}}, \bar{f_{right}})+ CS(f_{root},f_{right}) \hspace{1cm} [1] $$
+
+This is implemented in line 14 where the misclassification score is computed for the branch where feature $f_{i}$ is the root and $f_j$ is the left child. In lines 15-18, the algorithm checks if the misclassification score of the current left subtree is greater than the computed misclassification score $MS_{left}(f_{i},f_{j})$. If so, then $MS_{left}(f_{i},f_{j})$ is assigned as the best left subtree. The updated feature of the best left subtree is assigned to $f_j$, indicating that feature $f_{j}$ is the chosen feature for the left child when feature $f_i$ is the root. The best right subtree is then computed with $f_i$ as the root and $f_{j}$ as the right child using the same process.
+
+In lines 19 and 20, the best tree is computed by obtaining the root feature $f_i$ that minimizes the sum of misclassification scores of the best left and right subtrees. This is returned as the optimal decision tree.
+
+<html>
+<head>
+    <style>
+        .image8{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 600px;
+            height: 650px;
+        }
+    </style>
+</head>
+<body>
+
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm4.png){.image8}
 
 # **Algorithm 5**
 
+Algorithm 5 is one of the proposed extensions to the core algorithm where the concept of subtree hashing based on branches and subtree hashing based on datasets is explored. This algorithm aims to generate a hash value for an array of integers by iteratively combining each element of the array with the current hash value $k$ using bitwise XOR and other operations including introducing a constant ( $0x9e37796b9$ ) often used in hash functions for its properties and the expression $64k+k/4$ to prevent simple patterns input from propagating the output [1]. The resulting hash value is computed based on the properties of the elements in the array and is used for various purposes, such as indexing into hash tables or identifying unique representations of data structures.
+
+Each subtree in the decision tree is associated with exactly one branch. Conversely, a single branch of length $k$ may be linked to $k!$ subtrees. This means that the computation of a single subtree can be shared among all subtrees associated with the same branch, which can improve efficiency [1].The branch-based cache is described as an array of hash tables, where each branch of length $k$ is stored in the $k$-th hash table. Branches are stored as sorted arrays, with features converted into integers based on their index and polarity. Specifically, positive features are assigned the value $2i+1$ and negative features are assigned the value $2i$, where $i$ is the index of the feature. A conventional hash function is used on these integer arrays within the hash tables to compute the hash of each branch. The hash function described in Algorithm 5 computes the hash of an integer array $A$ of length $n$.
+
+The branch representation, while useful, has limitations in sharing computed results only with subtrees that have equivalent branches. More general representations allow sharing computed results with any subtree that optimizes the same subproblem, addressing this limitation. The proposed alternative representation uses the dataset itself as the subproblem representation. Each instance in the dataset is assigned a unique identifier in the form of an integer. Datasets are stored in an array of hash tables, where datasets with $m$ instances are stored in the $m$-th hash table. The hash value of a dataset is computed using the instance identifiers and Algorithm 5, treating the dataset as an array with instance identifiers as integers. The computed hash is stored in the dataset for further use. Dataset caching showed better performance than branch caching in experiments, and additional memory requirements were not a significant issue [1].
+
 <style>
-.image4{
-   position: center;
-    width: 600px;
-    height: 160px;
+.image4 {
+   display: block;
+   margin: auto;
+   width: 600px;
+   height: 150px;
 }
 </style>
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm5.png){.image4}
@@ -174,16 +245,29 @@ In lines 19-20, the algorithm repeats the process for the right subtree first.
 
 # **Algorithm 6**
 
+Algorithm 6 is one of the proposed extensions to the core algorithm to minimize the sparse objective. The sparse objective is defined as a weighted linear combination of the misclassification score and the number of feature nodes [1]. It is given by,
+
+$$ misclassification + \alpha * nodes \hspace{2cm} [1] $$It is used to help balance the trade-off between the size of the decision tree (controlled by the number of nodes) and its predictive accuracy (measured by the misclassification score). The sparse coefficient $\alpha$ determines the importance of the tree's size relative to its accuracy. Adding a node to the tree is considered beneficial only if it leads to a reduction in misclassifications by at least $\alpha$.
+
+This is implemented in Algorithm 6 where the input parameters include: dataset $D$, depth $d$, number of feature nodes $n$, and sparse coefficient $\alpha$. The output is the optimal decision tree that minimizes the sparse object on dataset $D$. In line 2, $T_{best}$ is initialized as a classification node based on dataset $D$. This serves as the starting point for the best decision tree found so far. For the sparse objective computation (lines 3 and 4), for each $n_0$ in the range from 1 to $n$, the algorithm computes an upper bound $UB$ for the sparse objective. The upper bound is calculated as the difference between the sparse objective of the current best tree and ($\alpha$ * the current number of feature nodes $n_0$) -1. The optimal subtree is then obtained. If the optimal tree is feasible, then the optimal subtree is returned as the best decision tree.
+
+NOTE: Running Algorithm 6 with $\alpha$ =0 captures all possible trees given the specified upper bounds on depth and number of nodes. This computation is cached for immediate access, facilitating quick determination of the optimal tree for any $\alpha$ [1]. When tuning the sparse coefficient $\alpha$ ; for deeper trees, it may be more efficient to consider specific $\alpha$ values rather than tuning for all possible values. Setting $\alpha$ > 0 contributes to reducing the search space, potentially helping the search process for deeper trees.
+
 <style>
-.image2{
-   position: center;
-    width: 600px;
-    height: 250px;
+.image2 {
+   display: block;
+   margin: auto;
+   width: 600px;
+   height: 250px;
 }
 </style>
+
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm6.png){.image2}
 
 # **Algorithm 7**
+Algorithm 7 is one of the proposed extensions to the core algorithm where a lexicographical objective is used to compute the tree with minimum misclassifications using the least amount of nodes. The lexicographical objective is taken into account by computing the optimal tree first and then querying the algorithm to compute smaller trees using the misclassification score as an upper bound [1].
+
+This is implemented in Algorithm 7 where the input parameters include: dataset $D$, depth $d$, and the number of feature nodes $n$. The output is the optimal decision tree that minimizes the misclassification and then the number of nodes on the dataset $D$. In line 2-3, the best tree $T_{best}$ is initialized, using the MurTree.SolveSubtree function. The misclassification score of the current best tree $T_{best}$ is then computed and assigned as the upper bound $UB$. In line 4, a for loop begins to iterate over the number of feature nodes $n_{0}$ from $n-1$ to 0. For each $n_0$, the $MurTree.SolveSubtree$ function is used to find the optimal subtree $T$ with $D,d,n_{0}$, and the current upper bound $UB$. If the optimal subtree $T$ is feasible then is it returned as the best tree $T_{best}$. 
 
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm7.png){.image2}
 

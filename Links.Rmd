@@ -6,7 +6,6 @@ toc_float: true
 
 <body style="background-color:lemonchiffon;">
 
-```{=html}
 <style>
 .logo {
    position: fixed;
@@ -16,9 +15,19 @@ toc_float: true
     height: 250px;
     z-index: 999; /* Ensure the logo appears above other content */
 }
+.quote {
+   position: fixed;
+   top: 320px; /* Adjust this value to position the text below the logo */
+   left: 20px; /* Adjust this value to align the text with the logo */
+   font-family: Arial, sans-serif; /* Adjust font if necessary */
+   font-size: 10px; /* Adjust font size if necessary */
+   color: black; /* Adjust text color if necessary */
+}
 </style>
-```
+
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/treelogo.png){.logo}
+
+<div class="quote">"Planting the seeds of optimization, one branch at a time"</div>
 
 ```{=html}
 <style type="text/css">

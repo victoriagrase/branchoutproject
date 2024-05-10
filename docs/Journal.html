@@ -437,10 +437,11 @@ respectively.</p></li>
 of feature nodes that results in the minimum total cost among all
 possible combinations.</p>
 <style>
-.image1{
-   position: center;
-    width: 600px;
-    height: 120px;
+.image1 {
+   display: block;
+   margin: auto;
+   width: 600px;
+   height: 120px;
 }
 </style>
 <p><img
@@ -539,26 +540,31 @@ tree. Otherwise, infeasibility is reported.</p>
 case 4), where the algorithm exhaustively explores the search space
 through overlapping recursions [1]. This is detailed in Algorithm 2.</p>
 <style>
-.image1{
-   position: center;
-    width: 600px;
-    height: 120px;
-}
-</style>
-<img
-src="images/algrotihm1description.png"
-class="image1" />
-<style>
-.image3{
-   position: center;
-   left: 50px;
-    width: 500px;
-    height: 500px;
+.image1 {
+   display: block;
+   margin: auto;
+   width: 600px;
+   height: 120px;
 }
 </style>
 <p><img
-src="images/algorithm1.png"
-class="image3" /></p>
+src="images/algrotihm1description.png"
+class="image1" /></p>
+<html>
+<head>
+<style>
+        .image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 650px;
+            height: 650px;
+        }
+    </style>
+</head>
+<body>
+<!-- Image -->
+<p><img src="images/algorithm1.png" alt="Image" class="image"></p>
 </div>
 <div id="algorithm-2" class="section level1">
 <h1><strong>Algorithm 2</strong></h1>
@@ -670,17 +676,22 @@ using:</p>
 <p><span class="math display">\[ T(D,d,n) \geq max{\{RLB(D,d,n), UB+1\}}
 \hspace{3cm} [1] \]</span></p>
 <p>The optimal tree is then returned.</p>
-<img
+<p><img
 src="images/algorithm2.png"
-class="image1" />
+class="image1" /></p>
+<html>
+<head>
 <style>
-.image5{
-   position: center;
-   left: 50px;
-    width: 550px;
-    height: 600px;
-}
-</style>
+        .image5{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 650px;
+            height: 680px;
+        }
+    </style>
+</head>
+<body>
 <p><img
 src="images/algorithm2description.png"
 class="image5" /></p>
@@ -750,23 +761,187 @@ solution along with the misclassification score of <span
 class="math inline">\(T\)</span>. Otherwise, the local lower bound is
 computed and returned.</p>
 <p>In lines 19-20, the algorithm repeats the process for the right
-subtree first. <img
+subtree first.</p>
+<html>
+<head>
+<style>
+        .image9{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 700px;
+            height: 650px;
+        }
+    </style>
+</head>
+<body>
+<p><img
 src="images/algorithm3.png"
-class="image3" /></p>
+class="image9" /></p>
 </div>
 <div id="algorithm-4" class="section level1">
 <h1><strong>Algorithm 4</strong></h1>
+<p>This algorithm is implemented in Algorithm 1 for small tree instances
+where optimal classification trees of depth two with three nodes are
+computed. The input parameter is a data set <span
+class="math inline">\(D\)</span> consisting of positive <span
+class="math inline">\(D^+\)</span> and negative <span
+class="math inline">\(D^-\)</span> instances.</p>
+<p>In lines 2-3, the specialized algorithm begins by initializing
+frequency counters for each individual feature ( <span
+class="math inline">\(FQ^{+}(f_{i})\)</span> and <span
+class="math inline">\(FQ^{-}(f_{i})\)</span> ) ,for positive and
+negative instances. The frequency counters pairs of features <span
+class="math inline">\(f_{i}\)</span> and <span
+class="math inline">\(f_{j}\)</span> where <span
+class="math inline">\(i\)</span> is less than <span
+class="math inline">\(j\)</span> are also initialized ( <span
+class="math inline">\(FQ +(f_{i}, f_{j})\)</span> and <span
+class="math inline">\(FQ - (f_{i}, f_{j})\)</span> ), for positive and
+negative instances.</p>
+<p>In lines 4-9 (Step 1), the algorithm iterates through each positive
+instance <span class="math inline">\(fv\)</span> in the dataset <span
+class="math inline">\(D^{+}\)</span> . For each feature <span
+class="math inline">\(f_{i}\)</span> in the instance, the frequency
+counter <span class="math inline">\(FQ+ (F_{i})\)</span> is incremented.
+For each pair of features <span class="math inline">\(f_{i}\)</span> and
+<span class="math inline">\(f_{j}\)</span> (where <span
+class="math inline">\(i\)</span> is less than <span
+class="math inline">\(j\)</span>) in the instance, the frequency counter
+<span class="math inline">\(FQ + (f_{i}, f_{j})\)</span> is incremented.
+Frequency counters for negative instances <span
+class="math inline">\(FQ-(f_{i})\)</span> and <span
+class="math inline">\(FQ -(f_{i}, f_{j})\)</span> are also computed
+using the dataset <span class="math inline">\(D^-\)</span>.</p>
+<p>In lines 10-18 (Step 2), the algorithm computes the optimal decision
+tree from the frequency counters <span
+class="math inline">\(FQ^+\)</span> and <span
+class="math inline">\(FQ^-\)</span>. It exploits the frequency counts to
+efficiently enumerate decision trees without needing to explicitly refer
+to the data [1]. This provides a substantial speed-up compared to
+iterating through features and splitting data as given in the dynamic
+programming formulation (Eq. 1) for decision trees of depth two [1]. Two
+nested for loops iterate through each pair of features <span
+class="math inline">\(f_i\)</span> and <span
+class="math inline">\(f_j\)</span> , excluding cases where <span
+class="math inline">\(i\)</span> is equal to <span
+class="math inline">\(j\)</span> . The classification score for a
+classification node with all instances of <span
+class="math inline">\(D\)</span> containing both features <span
+class="math inline">\(f_i\)</span> and <span
+class="math inline">\(f_j\)</span> is then computed using,</p>
+<p><span class="math display">\[ CS(f_{i},f_{j}) =
+min{\{FQ^{+}(f_{i},f_{j}), FQ^{-}(f_{i},f_{j})\}} \hspace{3cm} [1]
+\]</span></p>
+<p>This is implemented in lines 12 and 13 where the classification
+scores <span class="math inline">\(CS(\bar{f_{i}},f_{j})\)</span> and
+<span class="math inline">\(CS(\bar{f_{i} },\bar{f_{j}})\)</span> are
+computed which is the minimum of the frequency counts<span
+class="math inline">\(FQ^{+}(\bar{f_{i}},f_{j})\)</span> and <span
+class="math inline">\(FQ^{-}(\bar{f_{i}},f_{j})\)</span> and <span
+class="math inline">\(FQ^{+}(\bar{f_{i}},\bar{f_{j}})\)</span> and <span
+class="math inline">\(FQ^{-}(\bar{f_{i}},\bar{f_{j}})\)</span>,
+respectively. The misclassification score of the left or right subtree
+is computed using,</p>
+<p><span class="math display">\[ MS_{left}(f_{left}) =
+CS(\bar{f_{root}}, \bar{f_{left}})+ CS(\bar{f_{root}},f_{left})
+\hspace{2cm}\]</span></p>
+<p><span class="math display">\[ MS_{right}(f_{right}) =
+CS(\bar{f_{root}}, \bar{f_{right}})+ CS(f_{root},f_{right}) \hspace{1cm}
+[1] \]</span></p>
+<p>This is implemented in line 14 where the misclassification score is
+computed for the branch where feature <span
+class="math inline">\(f_{i}\)</span> is the root and <span
+class="math inline">\(f_j\)</span> is the left child. In lines 15-18,
+the algorithm checks if the misclassification score of the current left
+subtree is greater than the computed misclassification score <span
+class="math inline">\(MS_{left}(f_{i},f_{j})\)</span>. If so, then <span
+class="math inline">\(MS_{left}(f_{i},f_{j})\)</span> is assigned as the
+best left subtree. The updated feature of the best left subtree is
+assigned to <span class="math inline">\(f_j\)</span>, indicating that
+feature <span class="math inline">\(f_{j}\)</span> is the chosen feature
+for the left child when feature <span class="math inline">\(f_i\)</span>
+is the root. The best right subtree is then computed with <span
+class="math inline">\(f_i\)</span> as the root and <span
+class="math inline">\(f_{j}\)</span> as the right child using the same
+process.</p>
+<p>In lines 19 and 20, the best tree is computed by obtaining the root
+feature <span class="math inline">\(f_i\)</span> that minimizes the sum
+of misclassification scores of the best left and right subtrees. This is
+returned as the optimal decision tree.</p>
+<html>
+<head>
+<style>
+        .image8{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 600px;
+            height: 650px;
+        }
+    </style>
+</head>
+<body>
 <p><img
 src="images/algorithm4.png"
-class="image3" /></p>
+class="image8" /></p>
 </div>
 <div id="algorithm-5" class="section level1">
 <h1><strong>Algorithm 5</strong></h1>
+<p>Algorithm 5 is one of the proposed extensions to the core algorithm
+where the concept of subtree hashing based on branches and subtree
+hashing based on datasets is explored. This algorithm aims to generate a
+hash value for an array of integers by iteratively combining each
+element of the array with the current hash value <span
+class="math inline">\(k\)</span> using bitwise XOR and other operations
+including introducing a constant ( <span
+class="math inline">\(0x9e37796b9\)</span> ) often used in hash
+functions for its properties and the expression <span
+class="math inline">\(64k+k/4\)</span> to prevent simple patterns input
+from propagating the output [1]. The resulting hash value is computed
+based on the properties of the elements in the array and is used for
+various purposes, such as indexing into hash tables or identifying
+unique representations of data structures.</p>
+<p>Each subtree in the decision tree is associated with exactly one
+branch. Conversely, a single branch of length <span
+class="math inline">\(k\)</span> may be linked to <span
+class="math inline">\(k!\)</span> subtrees. This means that the
+computation of a single subtree can be shared among all subtrees
+associated with the same branch, which can improve efficiency [1].The
+branch-based cache is described as an array of hash tables, where each
+branch of length <span class="math inline">\(k\)</span> is stored in the
+<span class="math inline">\(k\)</span>-th hash table. Branches are
+stored as sorted arrays, with features converted into integers based on
+their index and polarity. Specifically, positive features are assigned
+the value <span class="math inline">\(2i+1\)</span> and negative
+features are assigned the value <span class="math inline">\(2i\)</span>,
+where <span class="math inline">\(i\)</span> is the index of the
+feature. A conventional hash function is used on these integer arrays
+within the hash tables to compute the hash of each branch. The hash
+function described in Algorithm 5 computes the hash of an integer array
+<span class="math inline">\(A\)</span> of length <span
+class="math inline">\(n\)</span>.</p>
+<p>The branch representation, while useful, has limitations in sharing
+computed results only with subtrees that have equivalent branches. More
+general representations allow sharing computed results with any subtree
+that optimizes the same subproblem, addressing this limitation. The
+proposed alternative representation uses the dataset itself as the
+subproblem representation. Each instance in the dataset is assigned a
+unique identifier in the form of an integer. Datasets are stored in an
+array of hash tables, where datasets with <span
+class="math inline">\(m\)</span> instances are stored in the <span
+class="math inline">\(m\)</span>-th hash table. The hash value of a
+dataset is computed using the instance identifiers and Algorithm 5,
+treating the dataset as an array with instance identifiers as integers.
+The computed hash is stored in the dataset for further use. Dataset
+caching showed better performance than branch caching in experiments,
+and additional memory requirements were not a significant issue [1].</p>
 <style>
-.image4{
-   position: center;
-    width: 600px;
-    height: 160px;
+.image4 {
+   display: block;
+   margin: auto;
+   width: 600px;
+   height: 150px;
 }
 </style>
 <p><img
@@ -775,11 +950,59 @@ class="image4" /></p>
 </div>
 <div id="algorithm-6" class="section level1">
 <h1><strong>Algorithm 6</strong></h1>
+<p>Algorithm 6 is one of the proposed extensions to the core algorithm
+to minimize the sparse objective. The sparse objective is defined as a
+weighted linear combination of the misclassification score and the
+number of feature nodes [1]. It is given by,</p>
+<p><span class="math display">\[ misclassification + \alpha * nodes
+\hspace{2cm} [1] \]</span>It is used to help balance the trade-off
+between the size of the decision tree (controlled by the number of
+nodes) and its predictive accuracy (measured by the misclassification
+score). The sparse coefficient <span
+class="math inline">\(\alpha\)</span> determines the importance of the
+tree’s size relative to its accuracy. Adding a node to the tree is
+considered beneficial only if it leads to a reduction in
+misclassifications by at least <span
+class="math inline">\(\alpha\)</span>.</p>
+<p>This is implemented in Algorithm 6 where the input parameters
+include: dataset <span class="math inline">\(D\)</span>, depth <span
+class="math inline">\(d\)</span>, number of feature nodes <span
+class="math inline">\(n\)</span>, and sparse coefficient <span
+class="math inline">\(\alpha\)</span>. The output is the optimal
+decision tree that minimizes the sparse object on dataset <span
+class="math inline">\(D\)</span>. In line 2, <span
+class="math inline">\(T_{best}\)</span> is initialized as a
+classification node based on dataset <span
+class="math inline">\(D\)</span>. This serves as the starting point for
+the best decision tree found so far. For the sparse objective
+computation (lines 3 and 4), for each <span
+class="math inline">\(n_0\)</span> in the range from 1 to <span
+class="math inline">\(n\)</span>, the algorithm computes an upper bound
+<span class="math inline">\(UB\)</span> for the sparse objective. The
+upper bound is calculated as the difference between the sparse objective
+of the current best tree and (<span
+class="math inline">\(\alpha\)</span> * the current number of feature
+nodes <span class="math inline">\(n_0\)</span>) -1. The optimal subtree
+is then obtained. If the optimal tree is feasible, then the optimal
+subtree is returned as the best decision tree.</p>
+<p>NOTE: Running Algorithm 6 with <span
+class="math inline">\(\alpha\)</span> =0 captures all possible trees
+given the specified upper bounds on depth and number of nodes. This
+computation is cached for immediate access, facilitating quick
+determination of the optimal tree for any <span
+class="math inline">\(\alpha\)</span> [1]. When tuning the sparse
+coefficient <span class="math inline">\(\alpha\)</span> ; for deeper
+trees, it may be more efficient to consider specific <span
+class="math inline">\(\alpha\)</span> values rather than tuning for all
+possible values. Setting <span class="math inline">\(\alpha\)</span>
+&gt; 0 contributes to reducing the search space, potentially helping the
+search process for deeper trees.</p>
 <style>
-.image2{
-   position: center;
-    width: 600px;
-    height: 250px;
+.image2 {
+   display: block;
+   margin: auto;
+   width: 600px;
+   height: 250px;
 }
 </style>
 <p><img
@@ -788,6 +1011,33 @@ class="image2" /></p>
 </div>
 <div id="algorithm-7" class="section level1">
 <h1><strong>Algorithm 7</strong></h1>
+<p>Algorithm 7 is one of the proposed extensions to the core algorithm
+where a lexicographical objective is used to compute the tree with
+minimum misclassifications using the least amount of nodes. The
+lexicographical objective is taken into account by computing the optimal
+tree first and then querying the algorithm to compute smaller trees
+using the misclassification score as an upper bound [1].</p>
+<p>This is implemented in Algorithm 7 where the input parameters
+include: dataset <span class="math inline">\(D\)</span>, depth <span
+class="math inline">\(d\)</span>, and the number of feature nodes <span
+class="math inline">\(n\)</span>. The output is the optimal decision
+tree that minimizes the misclassification and then the number of nodes
+on the dataset <span class="math inline">\(D\)</span>. In line 2-3, the
+best tree <span class="math inline">\(T_{best}\)</span> is initialized,
+using the MurTree.SolveSubtree function. The misclassification score of
+the current best tree <span class="math inline">\(T_{best}\)</span> is
+then computed and assigned as the upper bound <span
+class="math inline">\(UB\)</span>. In line 4, a for loop begins to
+iterate over the number of feature nodes <span
+class="math inline">\(n_{0}\)</span> from <span
+class="math inline">\(n-1\)</span> to 0. For each <span
+class="math inline">\(n_0\)</span>, the <span
+class="math inline">\(MurTree.SolveSubtree\)</span> function is used to
+find the optimal subtree <span class="math inline">\(T\)</span> with
+<span class="math inline">\(D,d,n_{0}\)</span>, and the current upper
+bound <span class="math inline">\(UB\)</span>. If the optimal subtree
+<span class="math inline">\(T\)</span> is feasible then is it returned
+as the best tree <span class="math inline">\(T_{best}\)</span>.</p>
 <p><img
 src="images/algorithm7.png"
 class="image2" /></p>

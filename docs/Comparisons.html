@@ -371,15 +371,21 @@ caching demonstrated a nuanced advantage over cache entries, showcasing
 a subtle yet discernible difference in performance metrics. This
 observation underscores the importance of carefully considering caching
 strategies to optimize algorithmic efficiency and overall computational
-outcomes.</p>
+outcomes. The provided illustration below gives an example of a caching
+strategy used in decision tree which results in quicker runtimes.</p>
+<html>
+<head>
 <style>
-.image3{
-   position: center;
-   left: 50px;
-    width: 700px;
-    height: 500px;
-}
-</style>
+        .image3{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 700px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
 <p><img
 src="images/caching.png"
 class="image3" /></p>
@@ -402,18 +408,17 @@ class="section level2">
 <h2><strong>Node Selection and Feature Selection Strategy</strong></h2>
 <p>Using the Gini coefficients the algorithm is run now including
 varying the feature selection strategy and the node selection strategy
-which is either post-order or dynamic. I FEEL LIKE WE PUT WHAT WE
-LEARNED AND PERFORMED IN CLASS HERE!!! Since we have previously
-evaluated and adjusted the lower bound and incremental frequency
-parameters, setting these parameters appropriately demonstrates that
-random feature selection results in longer computational times due to
-the additional overhead of exploring a larger feature space. Dynamic
-node selection is consistently but minimally better to a fixed
-post-order selection because it allows for adaptability and
-responsiveness to the evolving structure of the decision tree. The
-dynamic node selection can adjust its strategy based on real-time
-information, leading to more efficient and effective decision-making
-processes.</p>
+which is either post-order or dynamic. Since the creators have
+previously evaluated and adjusted the lower bound and incremental
+frequency parameters, setting these parameters appropriately
+demonstrates that random feature selection results in longer
+computational times due to the additional overhead of exploring a larger
+feature space. Dynamic node selection is consistently but minimally
+better to a fixed post-order selection because it allows for
+adaptability and responsiveness to the evolving structure of the
+decision tree. The dynamic node selection can adjust its strategy based
+on real-time information, leading to more efficient and effective
+decision-making processes.</p>
 </div>
 <div id="binary-features-and-tree-depth-impact" class="section level2">
 <h2><strong>Binary Features and Tree Depth impact</strong></h2>
@@ -486,7 +491,7 @@ selection strategy mentioned was set to maximum value. It is to be noted
 that the authors compared the methods using runtime instead of
 out-of-sample accuracy since the objective function is the same for both
 the MurTree and DL8.5 methods solving the same problem. Results showed
-that the Murtree algorithm was the fastest which is significant compared
+that the MurTree algorithm was the fastest which is significant compared
 to DL8.5 since it outruns previously mentioned methods. This is due to
 the Mur tree employing additional techniques to further take advantage
 of the properties of decision trees instead of using off-the-shelf tools
@@ -494,7 +499,7 @@ such as DL8.5.</p>
 </div>
 <div id="hyper-parameter-tuning-for-cart" class="section level1">
 <h1><strong>Hyper Parameter Tuning for CART</strong></h1>
-<p>Hyper-parameter tuning is what we used in class when conducting a
+<p>Hyper-parameter tuning is what was used in class when conducting a
 simple classification tree while performing a stratified 5-fold
 cross-validation of a test/train set to obtain the accuracies. The model
 is trained on training sets and evaluated on test sets. I have attached
@@ -522,130 +527,76 @@ crossval_errors_mean&lt;-rowMeans(crossval_errors)
 min_error_index &lt;- which.min(crossval_errors_mean)
 
 optimal_cp &lt;- cp_values[min_error_index]</code></pre>
+<p>The classification tree printed below used from a previous example in
+class in which we used cross validation for tree pruning.</p>
 <pre class="r"><code>tree_model_prune&lt;-rpart(SeriousInfection ~.,weights=class_weights,data=train_data,method=&quot;class&quot;,cp=optimal_cp)
 #saveRDS(tree_model_prune,file=&quot;tree_model_prune.rds&quot;)
 tree_model_prune&lt;- readRDS(&quot;tree_model_prune.rds&quot;)
 #plot(tree_model_prune)
 rpart.plot(tree_model_prune)</code></pre>
 <p><img src="Comparisons_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div id="heuristic-decision-trees-vs.-murtree" class="section level2">
+<h2><strong>Heuristic Decision Trees vs. MurTree </strong></h2>
+<p>When comparing heuristic decision trees to optimal ones with various
+parameter settings, certain trends emerge. Initially, the optimal trees
+often display superior training accuracy, although with similar
+performance on the test set. This discrepancy suggests that the tree
+structure derived from CART (Classification and Regression Trees) may
+not be optimal for the dataset. Alternatively, heuristic decision trees
+offer a benchmark for parameter tuning, providing an upper bound on
+permissible parameter values based on CART-derived trees. However, fully
+exploiting MurTree algorithm parameters, particularly up to depth four,
+yields more promising results. This strategy demonstrates better
+training accuracy, while considering all parameter options consistently
+leads to superior out-of-sample accuracy across datasets. In summary,
+while heuristic decision trees are faster, the MurTree algorithm
+provides better generalization.</p>
+</div>
 </div>
 <div id="random-forests-and-murtree" class="section level1">
 <h1><strong>Random Forests and MurTree</strong></h1>
-<p>So far this is just a blog where you can write in plain text and
-serve your writing to a webpage. One of the main purposes of this lab
-journal is to record your progress learning R. The reason I am asking
-you to use this process is because you can both make a website, and a
-lab journal, and learn R all in R-studio. This makes everything really
-convenient and in the sam place.</p>
-<p>So, let’s say you are learning how to make a histogram in R. For
-example, maybe you want to sample 100 numbers from a normal distribution
-with mean = 0, and standard deviation =1, and then you want to plot a
-histogram. You can do this right here by using an r code block, like
-this:</p>
-<pre class="r"><code>samples &lt;- rnorm(100, mean=0, sd=1)
-hist(samples)</code></pre>
-<p><img src="Comparisons_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>2018 | 7 | 23 Last compiled: 2024-05-10</p>
-<p>I’m writing this tutorial going from the top down. And, this is how
-it will be printed. So, notice the second post is second in the list. If
-you want your most recent post to be at the top, then make a new post
-starting at the top. If you want the oldest first, do, then keep adding
-to the bottomWhen you knit this R Markdown document, you will see that
-the histogram is printed to the page, along with the R code. This
-document can be set up to hide the R code in the webpage, just delete
-the comment (hashtag), from the cold folding option in the yaml header
-up top. For purposes of letting yourself see the code, and me see the
-code, best to keep it the way that it is. You learn all of these things
-and more can be customized in each R code block.</p>
-</div>
-<div id="the-big-idea" class="section level1">
-<h1>The big idea</h1>
-<p>Use this lab journal to record what you do in R. This way I will be
-able to see what you are doing and help you along the way. You will also
-be creating a repository of all the things you do. You can make posts
-about everything. Learning specific things in R (project unrelated), and
-doing things for the project that we will discuss at the beginning of
-the Fall semester. You can get started now by fiddling around with
-googling things, and trying stuff out in R. I’ve placed some helpful
-starting links in the links page on this website</p>
-</div>
-<div id="what-can-you-do-right-now-by-yourself" class="section level1">
-<h1>What can you do right now by yourself?</h1>
-<p>It’s hard to learn programming when you don’t have specific problems
-that you are trying to solve. Everything just seems abstract.</p>
-<p>I wrote an <a
-href="https://crumplab.github.io/programmingforpsych/">introductory
-programming book that introduces R</a>, and gives some <a
-href="https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html">concrete
-problems for you to solve</a>.</p>
-<p>To get the hang of journaling and solving the problems to learn
-programming, my suggestion is that you use this .Rmd file to solve the
-problems. It would look like this:</p>
-</div>
-<div id="problem-1" class="section level1">
-<h1>Problem 1</h1>
-<p>Do simple math with numbers, addition, subtraction, multiplication,
-division</p>
-<pre class="r"><code>1+2</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code>2*5</code></pre>
-<pre><code>## [1] 10</code></pre>
-<pre class="r"><code>5/3</code></pre>
-<pre><code>## [1] 1.666667</code></pre>
-<pre class="r"><code>(1+6+4)/5</code></pre>
-<pre><code>## [1] 2.2</code></pre>
-</div>
-<div id="problem-2" class="section level1">
-<h1>Problem 2</h1>
-<p>Put numbers into variables, do simple math on the variables</p>
-</div>
-<div id="problem-3" class="section level1">
-<h1>Problem 3</h1>
-<p>Write code that will place the numbers 1 to 100 separately into a
-variable using for loop. Then, again using the seq function.</p>
-<pre class="r"><code># for loop solution
-# i becomes the number 1 to 100 at each step of the loop
+<p>Random forests and optimal decision trees were tuned the same to make
+comparisons. While a forest of trees tends to be more accurate than a
+single decision tree, it is also less concise and harder for human
+interpretation. The random forests were tuned by adjusting for the
+number of trees, maximum depth, and a subset of features considered at
+each step. The results show that random forests generally outperform
+optimal decision trees on both training and test sets. However optimal
+decision trees of depth four achieve comparable performance in terms of
+accuracy. This suggests that optimal decision trees may be preferred for
+some applications over heuristically trained random forests. It is noted
+that different tuning strategies for random forests may result in lower
+or higher runtimes.</p>
+<p>Just as the paper states that random forests are generally more
+accurate but less concise and harder to interpret compared to single
+decision trees. The provided random forest results below, showcasing a
+classification type model, align with this expectation, demonstrating a
+reasonably low out-of-bag (OOB) error rate of 8.5%.</p>
+<pre class="r"><code># Separate your data into predictors (X) and the target variable (y)
+X &lt;- core_data[, -1]  # Exclude the target variable column
+y &lt;- core_data[[1]]   # Include only the target variable column
 
 
-a &lt;- length(100) # make empty variable, set length to 100
-for (i in 1:100){
-  a[i] &lt;-i #assigns the number in i, to the ith index of a
-}
+# Create the random forest model
+rf_model &lt;- randomForest(x = X, y = y)
 
-print(a)</code></pre>
-<pre><code>##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
-##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
-##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
-##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
-##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
-##  [91]  91  92  93  94  95  96  97  98  99 100</code></pre>
-<pre class="r"><code># for loop solution #2
-
-a&lt;-c() #create empty variable using combine command
-for (i in 1:100){
-  a&lt;-c(a,i) # keeps combining a with itself and the new number in i
-}
-print(a)</code></pre>
-<pre><code>##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
-##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
-##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
-##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
-##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
-##  [91]  91  92  93  94  95  96  97  98  99 100</code></pre>
-<pre class="r"><code># seq solution
-a &lt;- seq(1,100,1) # look up help for seq using ?seq() in console
-print(a)</code></pre>
-<pre><code>##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
-##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
-##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
-##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
-##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
-##  [91]  91  92  93  94  95  96  97  98  99 100</code></pre>
-</div>
-<div id="replace-this-with-problem-4" class="section level1">
-<h1>Replace this with problem 4</h1>
-<p>And keep going. Try to solve the problems with different scripts that
-provide the same solution. Good luck, Happy coding.</p>
+# Print a summary of the model
+print(rf_model)</code></pre>
+<pre><code>## 
+## Call:
+##  randomForest(x = X, y = y) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 5
+## 
+##         OOB estimate of  error rate: 8.5%
+## Confusion matrix:
+##      0 1  class.error
+## 0 7232 2 0.0002764722
+## 1  670 4 0.9940652819</code></pre>
+<pre class="r"><code># Optionally, make predictions with the model
+# Replace &#39;new_data&#39; with your new dataset for prediction
+ predicted_values &lt;- predict(rf_model, newdata = core_data)</code></pre>
 </div>
 
 
