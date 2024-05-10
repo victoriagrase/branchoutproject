@@ -687,7 +687,70 @@ class="image5" /></p>
 </div>
 <div id="algorithm-3" class="section level1">
 <h1><strong>Algorithm 3</strong></h1>
-<p><img
+<p>This algorithm is a subroutine used in general case (Algorithm 2) to
+compute the optimal tree given the tree configuration. The algorithm is
+used a strategy that prioritizes the subtree with the greater
+misclassification score of its leaf node as this subtree is more likely
+to result in a tree with more misclassifications [1]. If one subtree has
+a high misclassification score it increases the likelihood of pruning
+the other sibling [1]. Dynamic ordering is used where the left subtree
+is processed first.</p>
+<p>The input parameters include: a data set <span
+class="math inline">\(D\)</span> consisting of positive <span
+class="math inline">\(D^+\)</span> and negative <span
+class="math inline">\(D^-\)</span> instances, branch information of the
+subtree <span class="math inline">\(B\)</span>, the root feature <span
+class="math inline">\(f_{root}\)</span>, the depth <span
+class="math inline">\(d\)</span>, the number of feature nodes in the
+left and right subtree <span class="math inline">\(n_{L},n_{R}\)</span>.
+Additionally, an input parameter for an upper bound that represents a
+limit on the number of misclassification before the tree is deemed
+infeasible, i.e., not of interest for example since a better tree is
+known [1]. The output is an optimal classification tree with feature
+<span class="math inline">\(f_{root}\)</span> as its root that considers
+the input constraints or a lower bound on the misclassification score is
+returned if no such tree exists.</p>
+<p>In lines 2-4, the algorithm starts by obtaining the depths of the
+children subtrees from feature nodes in the left and right subtrees. The
+branches of the children subtrees <span class="math inline">\(B_{L},
+B_{R}\)</span> are also obtained from the branch information and root
+feature inputs.</p>
+<p>In lines 5-7, the algorithm checks if the misclassification score of
+the leaf node <span class="math inline">\(D(\bar{f}_{root})\)</span> is
+greater than the misclassification score of the leaf node <span
+class="math inline">\(D(f_{root})\)</span>. If so, then the upper bound
+for the left subtree <span class="math inline">\(UB_{L}\)</span> is
+computed first (due to dynamic ordering) and assigned by getting the
+difference between the upper bound and the lower bound from the cache.
+The optimal left tree is then stored in <span
+class="math inline">\(T_{L}\)</span>.</p>
+<p>In lines 8-10, the algorithm checks if the left subtree is
+infeasible. If so, the local lower bound <span
+class="math inline">\(LB_{local}\)</span> is computed and returned.
+Recall from Algorithm 2 that the local lower bound is the sum of the
+left and right subtree lower bounds for the number of misclassifications
+of an optimal decision tree for <span
+class="math inline">\(D,n,d\)</span>.</p>
+<p>In lines 11-18, the upper bound for the right subtree <span
+class="math inline">\(UB_{R}\)</span> is obtained by getting the
+difference between the upper bound <span
+class="math inline">\(UB\)</span> and the misclassification score of the
+left optimal subtree <span class="math inline">\(T_{L}\)</span> . From
+the pseudocode, we observe that it is not needed to compute <span
+class="math inline">\(UB_R\)</span> using the cache if the left child is
+infeasible. The optimal right subtree is then stored in <span
+class="math inline">\(T_{R}\)</span>. If the <span
+class="math inline">\(T_{R}\)</span> is feasible, a tree with including
+the root feature <span class="math inline">\(f_{root}\)</span> and
+optimal left and right children subtrees (<span
+class="math inline">\(T_{L},T_{R}\)</span>) is stored in <span
+class="math inline">\(T\)</span> . <span
+class="math inline">\(T\)</span> is then returned as the optimal
+solution along with the misclassification score of <span
+class="math inline">\(T\)</span>. Otherwise, the local lower bound is
+computed and returned.</p>
+<p>In lines 19-20, the algorithm repeats the process for the right
+subtree first. <img
 src="images/algorithm3.png"
 class="image3" /></p>
 </div>

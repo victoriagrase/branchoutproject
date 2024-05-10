@@ -138,6 +138,20 @@ The optimal tree is then returned.
 
 
 # **Algorithm 3**
+
+This algorithm is a subroutine used in general case (Algorithm 2) to compute the optimal tree given the tree configuration. The algorithm is used a strategy that prioritizes the subtree with the greater misclassification score of its leaf node as this subtree is more likely to result in a tree with more misclassifications [1]. If one subtree has a high misclassification score it increases the likelihood of pruning the other sibling [1]. Dynamic ordering is used where the left subtree is processed first.
+
+The input parameters include: a data set $D$ consisting of positive $D^+$ and negative $D^-$ instances, branch information of the subtree $B$, the root feature $f_{root}$, the depth $d$, the number of feature nodes in the left and right subtree $n_{L},n_{R}$. Additionally, an input parameter for an upper bound that represents a limit on the number of misclassification before the tree is deemed infeasible, i.e., not of interest for example since a better tree is known [1]. The output is an optimal classification tree with feature $f_{root}$ as its root that considers the input constraints or a lower bound on the misclassification score is returned if no such tree exists.
+
+In lines 2-4, the algorithm starts by obtaining the depths of the children subtrees from feature nodes in the left and right subtrees. The branches of the children subtrees $B_{L}, B_{R}$ are also obtained from the branch information and root feature inputs.
+
+In lines 5-7, the algorithm checks if the misclassification score of the leaf node $D(\bar{f}_{root})$ is greater than the misclassification score of the leaf node $D(f_{root})$. If so, then the upper bound for the left subtree $UB_{L}$ is computed first (due to dynamic ordering) and assigned by getting the difference between the upper bound and the lower bound from the cache. The optimal left tree is then stored in $T_{L}$.
+
+In lines 8-10, the algorithm checks if the left subtree is infeasible. If so, the local lower bound $LB_{local}$ is computed and returned. Recall from Algorithm 2 that the local lower bound is the sum of the left and right subtree lower bounds for the number of misclassifications of an optimal decision tree for $D,n,d$.
+
+In lines 11-18, the upper bound for the right subtree $UB_{R}$ is obtained by getting the difference between the upper bound $UB$ and the misclassification score of the left optimal subtree $T_{L}$ . From the pseudocode, we observe that it is not needed to compute $UB_R$ using the cache if the left child is infeasible. The optimal right subtree is then stored in $T_{R}$. If the $T_{R}$ is feasible, a tree with including the root feature $f_{root}$ and optimal left and right children subtrees ($T_{L},T_{R}$) is stored in $T$ . $T$ is then returned as the optimal solution along with the misclassification score of $T$. Otherwise, the local lower bound is computed and returned.
+
+In lines 19-20, the algorithm repeats the process for the right subtree first.
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/algorithm3.png){.image3}
 
 
