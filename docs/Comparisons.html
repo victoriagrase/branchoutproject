@@ -11,7 +11,7 @@
 
 
 
-<title>Comparisons</title>
+<title>Comparisons.knit</title>
 
 <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -342,14 +342,13 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Comparisons</h1>
 
 </div>
 
 
 <body style="background-color:aliceblue;">
 <div id="scalability-and-tuning-of-parameters" class="section level1">
-<h1>Scalability and Tuning of parameters</h1>
+<h1><strong>Scalability and Tuning of parameters</strong></h1>
 <p>Initially, the creators aimed to assess various parameters, such as
 incremental frequency computation, incremental solving, similarity lower
 bounding, in-order feature selection, dynamic node selection, and
@@ -359,7 +358,7 @@ results were analyzed, and settings, where the differences were deemed
 insignificant, were excluded from further consideration in the tuning
 studies.</p>
 <div id="caching-strategy" class="section level2">
-<h2>Caching Strategy</h2>
+<h2><strong>Caching Strategy</strong></h2>
 <p>For the varying of the cache strategy which is an optimization
 technique used to speed up computer programs by using the data storage
 of expensive function calls and returning them when the same inputs are
@@ -373,10 +372,22 @@ a subtle yet discernible difference in performance metrics. This
 observation underscores the importance of carefully considering caching
 strategies to optimize algorithmic efficiency and overall computational
 outcomes.</p>
+<style>
+.image3{
+   position: center;
+   left: 50px;
+    width: 700px;
+    height: 500px;
+}
+</style>
+<p><img
+src="images/caching.png"
+class="image3" /></p>
 </div>
 <div id="lower-bound-similarity-and-incremental-frequency"
 class="section level2">
-<h2>Lower Bound Similarity and Incremental Frequency</h2>
+<h2><strong>Lower Bound Similarity and Incremental
+Frequency</strong></h2>
 <p>Activating lower bound similarity and incremental frequency
 computation in this configuration retained the same parameters as the
 previous setting, with a similar exclusion of insignificant benchmarks.
@@ -388,7 +399,7 @@ streamlining the computational process and optimizing performance.</p>
 </div>
 <div id="node-selection-and-feature-selection-strategy"
 class="section level2">
-<h2>Node Selection and Feature Selection Strategy</h2>
+<h2><strong>Node Selection and Feature Selection Strategy</strong></h2>
 <p>Using the Gini coefficients the algorithm is run now including
 varying the feature selection strategy and the node selection strategy
 which is either post-order or dynamic. I FEEL LIKE WE PUT WHAT WE
@@ -405,7 +416,7 @@ information, leading to more efficient and effective decision-making
 processes.</p>
 </div>
 <div id="binary-features-and-tree-depth-impact" class="section level2">
-<h2>Binary Features and Tree Depth impact</h2>
+<h2><strong>Binary Features and Tree Depth impact</strong></h2>
 <p>In terms of scalability, the algorithm’s runtime is most
 significantly impacted by the depth of the tree, with the number of
 binary features also playing a notable role. However, drawing conclusive
@@ -419,17 +430,107 @@ decision trees as indicative measures of the influence of the number of
 binary features and the sparsity of the feature vectors on runtime.</p>
 </div>
 </div>
+<div id="optimal-method-comparisons" class="section level1">
+<h1><strong>Optimal Method Comparisons</strong></h1>
+<div id="sat-method-vs.-murtree" class="section level2">
+<h2><strong>SAT method vs. MurTree</strong></h2>
+<p>The SAT method differs from the MurTree algorithm in optimizing
+decision trees. While SAT aims to construct the smallest decision tree
+with zero misclassification by subsampling datasets, MurTree directly
+minimizes misclassifications without subsampling. It efficiently
+computes optimal decision trees even on the same subsampled data used in
+the SAT paper, and it can optimize directly with complete datasets. The
+discrepancy in runtime between MurTree and SAT is due to MurTree’s
+specialized procedure leveraging classification tree properties. Since
+MurTree does not utilize such extendability with new constraints, no
+further comparison is made between this method.</p>
+</div>
+<div id="osdt-method-vs.murtree" class="section level2">
+<h2><strong>OSDT method vs.MurTree</strong></h2>
+<p>A direct comparison between MurTree and OSDT using a ten-minute
+timeout with depth-four trees was experimented with. MurTree efficiently
+computed optimal trees with the specified objective within seconds,
+while OSDT may require minutes or even timeout. For the majority of
+benchmarks, OSDT timeouts unless the sparsity coefficient is set to be
+sufficiently high. As a result of increasing the spasticity coefficient,
+the computation time required to optimize the decision tree decreases
+because the algorithm doesn’t need to explore as many potential
+branches. MurTree, on the other hand, handled any sparsity coefficient
+within the time limit for trees with a maximum depth of four.</p>
+</div>
+<div id="gosdt-method-vs.-murtree" class="section level2">
+<h2><strong>GOSDT method vs. MurTree</strong></h2>
+<p>The comparison with GOSDT varies because controlling the depth or
+number of nodes isn’t directly supported; instead, the tree’s structure
+is influenced by the objective function and the sparsity coefficient.
+Results showed that GOSDT timed out on 65% of the datasets. Despite the
+absence of depth limitation, approximately 90% of the computed trees had
+a depth of at most four, with the maximum depth being seven, and all
+trees possessed a small number of nodes. These outcomes align with
+GOSDT’s aim of generating compact trees. However, the MurTree approach
+can swiftly generate optimal compact trees with any node count within
+seconds or minutes, even when the sparsity coefficient is zero. Notably,
+after executing the algorithm with a zero sparsity coefficient, the
+cache is populated, causing immediate extraction of a tree for any
+sparsity value. Essentially, the zero-case coefficient represents the
+worst-case scenario, and optimizing with higher sparsity coefficient
+values proves advantageous as it enables pruning.</p>
+</div>
+</div>
 <div id="dl8.5-vs.-murtree" class="section level1">
-<h1>DL8.5 vs. MurTree</h1>
-<p>2018 | 7 | 23 Last compiled: 2024-05-09</p>
-<p>I’m writing this tutorial going from the top down. And, this is how
-it will be printed. So, notice the second post is second in the list. If
-you want your most recent post to be at the top, then make a new post
-starting at the top. If you want the oldest first, do, then keep adding
-to the bottom</p>
+<h1><strong>DL8.5 vs. MurTree</strong></h1>
+<p>DL8.5 major difference between the MurTree algorithm is that the
+number of feature nodes cannot be limited which means that full binary
+trees are evaluated. To ensure a fair comparison with the feature node
+selection strategy mentioned was set to maximum value. It is to be noted
+that the authors compared the methods using runtime instead of
+out-of-sample accuracy since the objective function is the same for both
+the MurTree and DL8.5 methods solving the same problem. Results showed
+that the Murtree algorithm was the fastest which is significant compared
+to DL8.5 since it outruns previously mentioned methods. This is due to
+the Mur tree employing additional techniques to further take advantage
+of the properties of decision trees instead of using off-the-shelf tools
+such as DL8.5.</p>
+</div>
+<div id="hyper-parameter-tuning-for-cart" class="section level1">
+<h1><strong>Hyper Parameter Tuning for CART</strong></h1>
+<p>Hyper-parameter tuning is what we used in class when conducting a
+simple classification tree while performing a stratified 5-fold
+cross-validation of a test/train set to obtain the accuracies. The model
+is trained on training sets and evaluated on test sets. I have attached
+a snippet of code used previously in our class to demonstrate how to
+properly compute for the 5-fold cross validation.</p>
+<pre class="r"><code>num_folds&lt;-5
+folds&lt;-createFolds(train_data$SeriousInfection,k=num_folds,list = TRUE, returnTrain = FALSE)
+crossval_errors&lt;-matrix(NA,nrow=length(cp_values),ncol=5)
+for(i in 1:length(cp_values)){
+# Split data into stratified folds
+  for (j in 1:num_folds) {
+  train_set&lt;-train_data[folds[[j]],]
+  validation_set&lt;-train_data[-folds[[j]],]
+  #Extract class weights for the current fold
+  weights &lt;- class_weights[folds[[j]]]
+  rpart1_model&lt;-rpart(SeriousInfection ~ ., data = train_set, weights = weights,
+  method = &quot;class&quot;,cp=cp_values[i])
+  predictions_tree&lt;-predict(rpart1_model, newdata=validation_set, type=&quot;class&quot;)
+  crossval_errors[i,j]&lt;-mean(predictions_tree!=validation_set$SeriousInfection)
+  }
+}
+crossval_errors_mean&lt;-rowMeans(crossval_errors)
+#print(crossval_errors_mean)
+# Find the index of the minimum error
+min_error_index &lt;- which.min(crossval_errors_mean)
+
+optimal_cp &lt;- cp_values[min_error_index]</code></pre>
+<pre class="r"><code>tree_model_prune&lt;-rpart(SeriousInfection ~.,weights=class_weights,data=train_data,method=&quot;class&quot;,cp=optimal_cp)
+#saveRDS(tree_model_prune,file=&quot;tree_model_prune.rds&quot;)
+tree_model_prune&lt;- readRDS(&quot;tree_model_prune.rds&quot;)
+#plot(tree_model_prune)
+rpart.plot(tree_model_prune)</code></pre>
+<p><img src="Comparisons_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="random-forests-and-murtree" class="section level1">
-<h1>Random FOrests and MurTree</h1>
+<h1><strong>Random Forests and MurTree</strong></h1>
 <p>So far this is just a blog where you can write in plain text and
 serve your writing to a webpage. One of the main purposes of this lab
 journal is to record your progress learning R. The reason I am asking
@@ -443,14 +544,19 @@ histogram. You can do this right here by using an r code block, like
 this:</p>
 <pre class="r"><code>samples &lt;- rnorm(100, mean=0, sd=1)
 hist(samples)</code></pre>
-<p><img src="Comparisons_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>When you knit this R Markdown document, you will see that the
-histogram is printed to the page, along with the R code. This document
-can be set up to hide the R code in the webpage, just delete the comment
-(hashtag), from the cold folding option in the yaml header up top. For
-purposes of letting yourself see the code, and me see the code, best to
-keep it the way that it is. You learn all of these things and more can
-be customized in each R code block.</p>
+<p><img src="Comparisons_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>2018 | 7 | 23 Last compiled: 2024-05-10</p>
+<p>I’m writing this tutorial going from the top down. And, this is how
+it will be printed. So, notice the second post is second in the list. If
+you want your most recent post to be at the top, then make a new post
+starting at the top. If you want the oldest first, do, then keep adding
+to the bottomWhen you knit this R Markdown document, you will see that
+the histogram is printed to the page, along with the R code. This
+document can be set up to hide the R code in the webpage, just delete
+the comment (hashtag), from the cold folding option in the yaml header
+up top. For purposes of letting yourself see the code, and me see the
+code, best to keep it the way that it is. You learn all of these things
+and more can be customized in each R code block.</p>
 </div>
 <div id="the-big-idea" class="section level1">
 <h1>The big idea</h1>
@@ -492,18 +598,6 @@ division</p>
 <div id="problem-2" class="section level1">
 <h1>Problem 2</h1>
 <p>Put numbers into variables, do simple math on the variables</p>
-<pre class="r"><code>a&lt;-1
-b&lt;-2
-a+b</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code>d&lt;-c(1,2,3)
-e&lt;-c(5,6,7)
-d+e</code></pre>
-<pre><code>## [1]  6  8 10</code></pre>
-<pre class="r"><code>d*e</code></pre>
-<pre><code>## [1]  5 12 21</code></pre>
-<pre class="r"><code>d/e</code></pre>
-<pre><code>## [1] 0.2000000 0.3333333 0.4285714</code></pre>
 </div>
 <div id="problem-3" class="section level1">
 <h1>Problem 3</h1>

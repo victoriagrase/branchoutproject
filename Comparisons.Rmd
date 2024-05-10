@@ -1,5 +1,4 @@
 ---
-title: "Comparisons"
 output:
   html_document:
     toc: true
@@ -15,35 +14,181 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+library(tableone)
+library(elasticnet)
+library(caret)
+library(cluster)
+library(rpart)
+library(rpart.plot)
+library(factoextra)
+library(Deriv)
+library(ggplot2)
 ```
 
 
-# Scalability and Tuning of parameters 
+# **Scalability and Tuning of parameters**
 
 Initially, the creators aimed to assess various parameters, such as incremental frequency computation, incremental solving, similarity lower bounding, in-order feature selection, dynamic node selection, and dataset-based cache. During the tuning process, the algorithm underwent evaluation based on runtime performance and various metrics. Benchmark results were analyzed, and settings, where the differences were deemed insignificant, were excluded from further consideration in the tuning studies.
 
 
-## Caching Strategy 
+## **Caching Strategy**
 For the varying of the cache strategy which is an optimization technique used to speed up computer programs by using the data storage of expensive function calls and returning them when the same inputs are encountered again. (Memoisation) And for each combination keep a consistent depth of depth of 3 to 4 and task the algorithms to compute fifteen optimal decision trees, one tree for each value of n ∈ [1, 15]. After tuning the parameters, it became evident that the inclusion of the cache dataset significantly improved performance. Interestingly, branch caching demonstrated a nuanced advantage over cache entries, showcasing a subtle yet discernible difference in performance metrics. This observation underscores the importance of carefully considering caching strategies to optimize algorithmic efficiency and overall computational outcomes.
 
-## Lower Bound Similarity and Incremental Frequency 
+<style>
+.image3{
+   position: center;
+   left: 50px;
+    width: 700px;
+    height: 500px;
+}
+</style>
+
+![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/caching.png){.image3}
+
+## **Lower Bound Similarity and Incremental Frequency**
 Activating lower bound similarity and incremental frequency computation in this configuration retained the same parameters as the previous setting, with a similar exclusion of insignificant benchmarks. The runtime analysis reaffirmed the importance of incremental computation over recomputation from scratch, highlighting its role in enhancing computational efficiency. Additionally, setting a lower bound contributed to reduced runtimes, emphasizing its significance in streamlining the computational process and optimizing performance.
 
 
-## Node Selection and Feature Selection Strategy 
+## **Node Selection and Feature Selection Strategy**
 Using the Gini coefficients the algorithm is run now including varying the feature selection strategy and the node selection strategy which is either post-order or dynamic. I FEEL LIKE WE PUT WHAT WE LEARNED AND PERFORMED IN CLASS HERE!!! Since we have previously evaluated and adjusted the lower bound and incremental frequency parameters, setting these parameters appropriately demonstrates that random feature selection results in longer computational times due to the additional overhead of exploring a larger feature space. Dynamic node selection is consistently but minimally better to a fixed post-order selection because it allows for adaptability and responsiveness to the evolving structure of the decision tree. The dynamic node selection can adjust its strategy based on real-time information, leading to more efficient and effective decision-making processes.
 
-## Binary Features and Tree Depth impact 
+## **Binary Features and Tree Depth impact**
 In terms of scalability, the algorithm's runtime is most significantly impacted by the depth of the tree, with the number of binary features also playing a notable role. However, drawing conclusive statements on the impact of the number of features on runtime is challenging due to the pruning mechanism inherent in the MurTree algorithm. Since pruning largely depends on the dataset structure, duplicating features would not provide definitive insights into their impact on runtime. Instead, it is more appropriate to consider the computational complexity of our algorithm and the number of possible decision trees as indicative measures of the influence of the number of binary features and the sparsity of the feature vectors on runtime.
 
+# **Optimal Method Comparisons** 
+
+
+## **SAT method vs. MurTree**
+The SAT method differs from the MurTree algorithm in optimizing decision trees. While SAT aims to construct the smallest decision tree with zero misclassification by subsampling datasets, MurTree directly minimizes misclassifications without subsampling. It efficiently computes optimal decision trees even on the same subsampled data used in the SAT paper, and it can optimize directly with complete datasets. The discrepancy in runtime between MurTree and SAT is due to MurTree's specialized procedure leveraging classification tree properties. Since MurTree does not utilize such extendability with new constraints, no further comparison is made between this method.
+
+
+## **OSDT method vs.MurTree**
+A direct comparison between MurTree and OSDT using a ten-minute timeout with depth-four trees was experimented with. MurTree efficiently computed optimal trees with the specified objective within seconds, while OSDT may require minutes or even timeout. For the majority of benchmarks, OSDT timeouts unless the sparsity coefficient is set to be sufficiently high.  As a result of increasing the spasticity coefficient, the computation time required to optimize the decision tree decreases because the algorithm doesn't need to explore as many potential branches.  MurTree, on the other hand, handled any sparsity coefficient within the time limit for trees with a maximum depth of four.
+
+
+## **GOSDT method vs. MurTree**
+
+The comparison with GOSDT varies because controlling the depth or number of nodes isn't directly supported; instead, the tree's structure is influenced by the objective function and the sparsity coefficient. Results showed that GOSDT timed out on 65% of the datasets. Despite the absence of depth limitation, approximately 90% of the computed trees had a depth of at most four, with the maximum depth being seven, and all trees possessed a small number of nodes. These outcomes align with GOSDT's aim of generating compact trees. However, the MurTree approach can swiftly generate optimal compact trees with any node count within seconds or minutes, even when the sparsity coefficient is zero. Notably, after executing the algorithm with a zero sparsity coefficient, the cache is populated, causing immediate extraction of a tree for any sparsity value. Essentially, the zero-case coefficient represents the worst-case scenario, and optimizing with higher sparsity coefficient values proves advantageous as it enables pruning.
+
   
-# DL8.5 vs. MurTree
+# **DL8.5 vs. MurTree**
 
-2018 | 7 | 23 Last compiled: `r Sys.Date()`
 
-I'm writing this tutorial going from the top down. And, this is how it will be printed. So, notice the second post is second in the list. If you want your most recent post to be at the top, then make a new post starting at the top. If you want the oldest first, do, then keep adding to the bottom
+DL8.5 major difference between the MurTree algorithm is that the number of feature nodes cannot be limited which means that full binary trees are evaluated. To ensure a fair comparison with the feature node selection strategy mentioned was set to maximum value. It is to be noted that the authors compared the methods using runtime instead of out-of-sample accuracy since the objective function is the same for both the MurTree and DL8.5 methods solving the same problem. Results showed that the Murtree algorithm was the fastest which is significant compared to DL8.5 since it outruns previously mentioned methods. This is due to the Mur tree employing additional techniques to further take advantage of the properties of decision trees instead of using off-the-shelf tools such as DL8.5.
 
-# Random FOrests and MurTree
+
+# **Hyper Parameter Tuning for CART**
+
+Hyper-parameter tuning is what we used in class when conducting a simple classification tree while performing a stratified 5-fold cross-validation of a test/train set to obtain the accuracies. The model is trained on training sets and evaluated on test sets. I have attached a snippet of code used previously in our class to demonstrate how to properly compute for the 5-fold cross validation. 
+
+
+```{r,include=FALSE}
+
+core_data<-data.table::fread("C:/Users/VGSCHOOL/PHP2650/core_temp.csv")
+
+#Remove surgery type since the column is all NAs
+# Remove the 'SurgeryType' column
+core_data[, SurgeryType := NULL]
+
+# Function to identify binary variables in a dataframe
+find_binary_variables<- function(core_data) {
+  binary_vars <- sapply(core_data, function(x) length(unique(x)) == 2 && all(is.na(x) | x %in% c(0, 1)))
+  return(names(binary_vars[binary_vars]))
+}
+
+# Apply the function to your dataset
+binary_variables <- find_binary_variables(core_data)
+
+# Print the names of binary variables
+#print(binary_variables)
+
+for (var in binary_variables) {
+  core_data[[var]] <- factor(core_data[[var]], levels = c(0, 1))
+}
+
+# Subset the data to include only the specified variables
+core_data<- core_data[, c("SeriousInfection", "Age", "FEMALE", "BMI", "CharlsonScore", "CHF", "VALVE", "DM", "RENLFAIL", "LIVER", "METS", "TUMOR", "COAG", "OBESE", "WGHTLOSS", "LYTES", "BLDLOSS", "ANEMDEF", "DRUG", "SteroidHx", "ImmunosuppressantHx", "SurgDuration", "Open", "TWATemp", "LastReadingTemp", "EndCaseTemp")]
+
+# Set the seed for reproducibility
+set.seed(123)
+
+
+# Create the test-train split
+train_index <- createDataPartition(core_data$SeriousInfection, p = 0.75, list = FALSE)
+train_data <- core_data[train_index, ]
+test_data <- core_data[-train_index, ]
+
+class_weights<- ifelse(train_data$SeriousInfection==1, nrow(train_data)/sum(train_data$SeriousInfection==1), nrow(train_data)/sum(train_data$SeriousInfection==0))
+
+model2<-glm(SeriousInfection ~ Age + BMI + CharlsonScore + DM + LIVER + METS + 
+    TUMOR + COAG + OBESE + WGHTLOSS + LYTES + DRUG + SurgDuration + 
+    Open + TWATemp + LastReadingTemp + EndCaseTemp + DM:SurgDuration + 
+    TUMOR:WGHTLOSS + OBESE:Open + TUMOR:LastReadingTemp + 
+    Age:LastReadingTemp + CharlsonScore:DM + SurgDuration:TWATemp + 
+    TUMOR:OBESE + BMI:TUMOR + Age:WGHTLOSS + Age:EndCaseTemp + 
+    SurgDuration:Open + LYTES:Open + COAG:LYTES + COAG:EndCaseTemp + 
+    LIVER:EndCaseTemp + LIVER:SurgDuration + LIVER:TUMOR + LIVER:COAG + 
+    LIVER:Open + Age:DRUG + Age:TWATemp + Age:Open + 
+    BMI:Open + DM:METS + OBESE:DRUG+ TUMOR:LYTES + CharlsonScore:TWATemp + 
+    CharlsonScore:LastReadingTemp + Open:LastReadingTemp + COAG:SurgDuration + 
+    WGHTLOSS:LYTES + Open:TWATemp +
+    BMI:WGHTLOSS + Age:METS + DRUG:SurgDuration + LIVER:METS + 
+    CharlsonScore:LIVER + DM:LIVER + Age:CharlsonScore + Age:TUMOR + BMI:OBESE + OBESE:WGHTLOSS + METS:COAG + 
+    CharlsonScore:DRUG + TUMOR:DRUG + TWATemp:LastReadingTemp + 
+    LastReadingTemp:EndCaseTemp + DM:COAG + LIVER:LastReadingTemp + 
+    Age:SurgDuration + DRUG:EndCaseTemp + DRUG:TWATemp + BMI:DRUG + 
+    WGHTLOSS:DRUG + DRUG:LastReadingTemp + METS:LastReadingTemp + 
+    DM:LastReadingTemp + WGHTLOSS:LastReadingTemp + Age:DM + 
+    CharlsonScore:OBESE + METS:TWATemp + 
+    SurgDuration:LastReadingTemp + WGHTLOSS:Open + OBESE:LYTES + METS:EndCaseTemp +
+    TUMOR:COAG, data=train_data,family=binomial(link = "logit"),weights = class_weights)
+
+
+glm_summary_inter<-summary(model2)
+#print(glm_summary_inter)
+#BIC(model2)
+tree_model<-rpart(SeriousInfection ~ .,weights=class_weights,data=train_data,method="class",cp=0.004)
+#printcp(tree_model)
+# Extract the cp values from the printed output
+cp_table <- summary(tree_model)$cpt
+cp_values <- cp_table[, "CP"]
+
+```
+
+```{r}
+num_folds<-5
+folds<-createFolds(train_data$SeriousInfection,k=num_folds,list = TRUE, returnTrain = FALSE)
+crossval_errors<-matrix(NA,nrow=length(cp_values),ncol=5)
+for(i in 1:length(cp_values)){
+# Split data into stratified folds
+  for (j in 1:num_folds) {
+  train_set<-train_data[folds[[j]],]
+  validation_set<-train_data[-folds[[j]],]
+  #Extract class weights for the current fold
+  weights <- class_weights[folds[[j]]]
+  rpart1_model<-rpart(SeriousInfection ~ ., data = train_set, weights = weights,
+  method = "class",cp=cp_values[i])
+  predictions_tree<-predict(rpart1_model, newdata=validation_set, type="class")
+  crossval_errors[i,j]<-mean(predictions_tree!=validation_set$SeriousInfection)
+  }
+}
+crossval_errors_mean<-rowMeans(crossval_errors)
+#print(crossval_errors_mean)
+# Find the index of the minimum error
+min_error_index <- which.min(crossval_errors_mean)
+
+optimal_cp <- cp_values[min_error_index]
+```
+
+```{r}
+tree_model_prune<-rpart(SeriousInfection ~.,weights=class_weights,data=train_data,method="class",cp=optimal_cp)
+#saveRDS(tree_model_prune,file="tree_model_prune.rds")
+tree_model_prune<- readRDS("tree_model_prune.rds")
+#plot(tree_model_prune)
+rpart.plot(tree_model_prune)
+```
+
+# **Random Forests and MurTree**
 
 So far this is just a blog where you can write in plain text and serve your writing to a webpage. One of the main purposes of this lab journal is to record your progress learning R. The reason I am asking you to use this process is because you can both make a website, and a lab journal, and learn R all in R-studio. This makes everything really convenient and in the sam place. 
 
@@ -54,7 +199,9 @@ samples <- rnorm(100, mean=0, sd=1)
 hist(samples)
 ```
 
-When you knit this R Markdown document, you will see that the histogram is printed to the page, along with the R code. This document can be set up to hide the R code in the webpage, just delete the comment (hashtag), from the cold folding option in the yaml header up top. For purposes of letting yourself see the code, and me see the code, best to keep it the way that it is. You learn all of these things and more can be customized in each R code block.
+2018 | 7 | 23 Last compiled: `r Sys.Date()`
+
+I'm writing this tutorial going from the top down. And, this is how it will be printed. So, notice the second post is second in the list. If you want your most recent post to be at the top, then make a new post starting at the top. If you want the oldest first, do, then keep adding to the bottomWhen you knit this R Markdown document, you will see that the histogram is printed to the page, along with the R code. This document can be set up to hide the R code in the webpage, just delete the comment (hashtag), from the cold folding option in the yaml header up top. For purposes of letting yourself see the code, and me see the code, best to keep it the way that it is. You learn all of these things and more can be customized in each R code block.
 
 # The big idea
 
@@ -84,18 +231,7 @@ Do simple math with numbers, addition, subtraction, multiplication, division
 
 Put numbers into variables, do simple math on the variables
 
-```{r}
-a<-1
-b<-2
-a+b
 
-d<-c(1,2,3)
-e<-c(5,6,7)
-d+e
-d*e
-d/e
-
-```
 
 # Problem 3
 
