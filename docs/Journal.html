@@ -347,14 +347,17 @@ div.tocify {
 
 
 <body style="background-color:aliceblue;">
-<div id="review-of-murtree-optimal-decision-trees"
-class="section level1">
-<h1><strong>Review of MurTree: Optimal Decision Trees</strong></h1>
-<p>The Murtree Algorithm computes optimal classification trees by
-exhaustive search. The search space is exponentially large, but special
-measures are taken to efficiently iterate through all trees, exploit the
-overlap between trees, and avoid computing suboptimal decision
-trees.</p>
+<div id="review-of-murtree" class="section level1">
+<h1><strong>Review of MurTree</strong></h1>
+<p>The MurTree algorithm is presented in the sections below. Algorithm 1
+(summarizes the algorithm), Algorithm 2 (general case when none of the
+conditions in Algorithm 1 occur), and Algorithm 3 (subroutine to compute
+the optimal tree for a given tree configuration) are part of the core
+algorithm. Algorithm 4 (computes optimal tree of depth two with three
+nodes), Algorithm 5 (hash is computed), Algorithm 6 (minimize the sparse
+objective), and Algorithm 7 (computes tree with minimum
+misclassifications when considering a lexicographical objective) are
+extensions that use the core algorithm as a basis.</p>
 </div>
 <div id="core-equation" class="section level1">
 <h1><strong>Core Equation</strong></h1>
@@ -568,11 +571,11 @@ class="image1" /></p>
 </div>
 <div id="algorithm-2" class="section level1">
 <h1><strong>Algorithm 2</strong></h1>
-<p>The general case of the core equation used in the main algorithm
-(Algorithm 1) is implemented if none of the conditions took place in
-Algorithm 1. Similar to Algorithm 1, the input parameters include: a
-data set <span class="math inline">\(D\)</span> consisting of positive
-<span class="math inline">\(D^+\)</span> and negative <span
+<p>The general case of the core equation used in the Algorithm 1 is
+implemented if none of the conditions took place in Algorithm 1. Similar
+to Algorithm 1, the input parameters include: a data set <span
+class="math inline">\(D\)</span> consisting of positive <span
+class="math inline">\(D^+\)</span> and negative <span
 class="math inline">\(D^-\)</span> instances, branch information of the
 subtree <span class="math inline">\(B\)</span>, the depth <span
 class="math inline">\(d\)</span>, the number of feature nodes <span
@@ -781,7 +784,8 @@ class="image9" /></p>
 </div>
 <div id="algorithm-4" class="section level1">
 <h1><strong>Algorithm 4</strong></h1>
-<p>This algorithm is implemented in Algorithm 1 for small tree instances
+<p>While this algorithm is considered an extension to the core
+algorithm, it is implemented in Algorithm 1 for small tree instances
 where optimal classification trees of depth two with three nodes are
 computed. The input parameter is a data set <span
 class="math inline">\(D\)</span> consisting of positive <span

@@ -15,12 +15,9 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-# **Review of MurTree: Optimal Decision Trees**
+# **Review of MurTree**
 
-The Murtree Algorithm computes optimal classification trees by
-exhaustive search. The search space is exponentially large, but special
-measures are taken to efficiently iterate through all trees, exploit the
-overlap between trees, and avoid computing suboptimal decision trees.
+The MurTree algorithm is presented in the sections below. Algorithm 1 (summarizes the algorithm), Algorithm 2 (general case when none of the conditions in Algorithm 1 occur), and Algorithm 3 (subroutine to compute the optimal tree for a given tree configuration) are part of the core algorithm. Algorithm 4 (computes optimal tree of depth two with three nodes), Algorithm 5 (hash is computed), Algorithm 6 (minimize the sparse objective), and Algorithm 7 (computes tree with minimum misclassifications when considering a lexicographical objective) are extensions that use the core algorithm as a basis. 
 
 # **Core Equation**
 
@@ -104,7 +101,7 @@ In line 33, the algorithm considers the general case (Core Equation case 4), whe
 
 # **Algorithm 2**
 
-The general case of the core equation used in the main algorithm (Algorithm 1) is implemented if none of the conditions took place in Algorithm 1. Similar to Algorithm 1, the input parameters include: a data set $D$ consisting of positive $D^+$ and negative $D^-$ instances, branch information of the subtree $B$, the depth $d$, the number of feature nodes $n$. Additionally, an input parameter for an upper bound that represents a limit on the number of misclassification before the tree is deemed infeasible, i.e., not of interest for example since a better tree is known [1]. The output is an optimal classification tree considering the input constraints or indication that no such tree exists (infeasible).
+The general case of the core equation used in the Algorithm 1 is implemented if none of the conditions took place in Algorithm 1. Similar to Algorithm 1, the input parameters include: a data set $D$ consisting of positive $D^+$ and negative $D^-$ instances, branch information of the subtree $B$, the depth $d$, the number of feature nodes $n$. Additionally, an input parameter for an upper bound that represents a limit on the number of misclassification before the tree is deemed infeasible, i.e., not of interest for example since a better tree is known [1]. The output is an optimal classification tree considering the input constraints or indication that no such tree exists (infeasible).
 
 In lines 2-4, the algorithm uses a single classification node as the initial $T_{best}$ solution. If the misclassification score of the classification node is greater than the upper bound $UB$ then the initial solution $T_{best}$ single classification node is reported as infeasible.
 
@@ -188,7 +185,7 @@ In lines 19-20, the algorithm repeats the process for the right subtree first.
 
 # **Algorithm 4**
 
-This algorithm is implemented in Algorithm 1 for small tree instances where optimal classification trees of depth two with three nodes are computed. The input parameter is a data set $D$ consisting of positive $D^+$ and negative $D^-$ instances.
+While this algorithm is considered an extension to the core algorithm, it is implemented in Algorithm 1 for small tree instances where optimal classification trees of depth two with three nodes are computed. The input parameter is a data set $D$ consisting of positive $D^+$ and negative $D^-$ instances.
 
 In lines 2-3, the specialized algorithm begins by initializing frequency counters for each individual feature ( $FQ^{+}(f_{i})$ and $FQ^{-}(f_{i})$ ) ,for positive and negative instances. The frequency counters pairs of features $f_{i}$ and $f_{j}$ where $i$ is less than $j$ are also initialized ( $FQ +(f_{i}, f_{j})$ and $FQ - (f_{i}, f_{j})$ ), for positive and negative instances.
 

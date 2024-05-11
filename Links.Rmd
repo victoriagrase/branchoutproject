@@ -28,7 +28,6 @@ toc_float: true
 ![](C:/Users/VGSCHOOL/2650FinalProject/branchoutproject/images/treelogo.png){.logo}
 
 <div class="quote">"Planting the seeds of optimization, one branch at a time"</div>
-
 ```{=html}
 <style type="text/css">
 
@@ -52,94 +51,110 @@ These additional resources encompass supplementary materials detailing the evolu
 
 ### **Previous work contributing to Design of MurTree**
 
-1.  Binarising
+### **Binarising**
 
-    1.  Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
+  5.  Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
         decision tree induction from itemset lattices. Data Mining and
         Knowledge Discovery, 21(1), 2010
 
-    2.  Nina Narodytska, Alexey Ignatiev, Filipe Pereira, and Joao
+  6.  Nina Narodytska, Alexey Ignatiev, Filipe Pereira, and Joao
         Marques-Silva. Learning optimal decision trees with SAT. In
         Proceedings of IJCAI, 2018
 
-    3.  Sicco Verwer and Yingqian Zhang. Learning optimal classification
+  7.  Sicco Verwer and Yingqian Zhang. Learning optimal classification
         trees using a binary linear program formulation. In Proceedings
         of AAAI, 2019.
-
-    4.  Dimitris Bertsimas and Jack Dunn. Optimal classification trees.
+        
+  8.  Dimitris Bertsimas and Jack Dunn. Optimal classification trees.
         Machine Learning, 106(7),2017.
 
-2.  Lower Bounding
+### **Lower Bounding**
 
-    1.  Elaine Angelino, Nicholas Larus-Stone, Daniel Alabi, Margo
+  9.  Elaine Angelino, Nicholas Larus-Stone, Daniel Alabi, Margo
         Seltzer, and Cynthia Rudin. Learning certifiably optimal rule
         lists for categorical data. The Journal of Machine Learning
         Research, 2017.
 
-    2.  Mohammed J Zaki and Karam Gouda. Fast vertical mining using
+  10.  Mohammed J Zaki and Karam Gouda. Fast vertical mining using
         diffsets. In Proceedings of SIGKDD, 2003.
 
-3.  Misclassification
+### **Misclassification**
 
-    1.  Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
+  11.  Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
         Quimper, and Pierre Schaus.Learning optimal decision trees using
         constraint programming. In Proceedings of CP, 2019.
 
-    2.  Hao Hu, Mohamed Siala, Emmanuel Hebrard, and Marie-José Huguet.
+  12.  Hao Hu, Mohamed Siala, Emmanuel Hebrard, and Marie-José Huguet.
         Learning optimal decision trees with maxsat and its integration
         in adaboost. In Proceedings of IJCAI, 2020.
           
         
-4.  Frequency Counting for Mining
+### **Frequency Counting for Mining**
 
-    1.  Mohammed Javeed Zaki. Scalable algorithms for association
+  13.  Mohammed Javeed Zaki. Scalable algorithms for association
         mining. IEEE Transactions on Knowledge and Data Engineering, 
         12(3), 2000.
 
-    2. Albrecht Zimmermann and Luc De Raedt. Cluster-grouping: from
+  14. Albrecht Zimmermann and Luc De Raedt. Cluster-grouping: from
       subgroup discovery to clustering. Machine Learning, 77(1), 2009.
 
 
-5.  Dynamic Programming and Search
+### **Dynamic Programming and Search**
 
-    1.  Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
+  15.  Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
         decision tree induction from itemset lattices. Data Mining and
         Knowledge Discovery, 21(1), 2010
 
-    2.  Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
+  16.  Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
         Quimper, and Pierre Schaus.Learning optimal decision trees using
         constraint programming. In Proceedings of CP, 2019.
 
-    3.  Thibaut Vidal and Maximilian Schiffer. Born-again tree
+  17.  Thibaut Vidal and Maximilian Schiffer. Born-again tree
         ensembles. In Proceedings of ICML,2020.
 
-6.  Constraints and Caching
 
-    1.  Gaël Aglin, Siegfried Nijssen, and Pierre Schaus. Learning
+### **Constraints and Caching**
+
+  18.  Gaël Aglin, Siegfried Nijssen, and Pierre Schaus. Learning
         optimal decision trees using caching branch-and-bound search. In
         Proceedings of AAAI, 2020a.
 
-    2.  Jimmy Lin, Chudi Zhong, Diane Hu, Cynthia Rudin, and Margo
+  19.  Jimmy Lin, Chudi Zhong, Diane Hu, Cynthia Rudin, and Margo
         Seltzer. Generalized and scalable optimal sparse decision trees.
         In Proceedings of ICML, 2020.
 
-    3.  Sicco Verwer and Yingqian Zhang. Learning decision trees with
+  20.  Sicco Verwer and Yingqian Zhang. Learning decision trees with
         flexible constraints and objectives using integer optimization.
         In Proceedings of CPAIOR, 2017.
 
-    4.  Florent Avellaneda. Efficient inference of optimal decision
+  21.  Florent Avellaneda. Efficient inference of optimal decision
         trees. In Proceedings of AAAI,2020
 
-    5.  Xiyang Hu, Cynthia Rudin, and Margo Seltzer. Optimal sparse
+  22.  Xiyang Hu, Cynthia Rudin, and Margo Seltzer. Optimal sparse
         decision trees. In Proceedings of NeurIPS, 2019.
 
-7.  Nonlinear Metrics and Sparse
 
-    1.  Emir Demirović and Peter Stuckey. Optimal decision trees for
+### **Nonlinear Metrics and Sparse**
+
+  23.  Emir Demirović and Peter Stuckey. Optimal decision trees for
         nonlinear metrics. In Proceedings of AAAI, 2021.
 
-    2.  Rafael Blanquero, Emilio Carrizosa, Cristina Molero-Río, and
+  24.  Rafael Blanquero, Emilio Carrizosa, Cristina Molero-Río, and
         Dolores Romero Morales. Sparsity in optimal randomized
         classification trees. European Journal of Operational Research,
 
         2020. 
+        
+### **Other Materials**
+
+  25.Paul, A. (2024). 8 Optimizations. Slides for PHP2650 Spring24 S01 Statistical
+    Learning and Big Data. Retrieved from https://canvas.brown.edu/courses/1094076/files/folder/Slides?preview=70016628
+    
+  26.Paul, A. (2024). 9 Trees. Slides for PHP2650 Spring24 S01 Statistical
+    Learning and Big Data. Retrieved from https://canvas.brown.edu/courses/1094076/files/folder/Slides?preview=70029981
+    
+  27.Paul, A. (2024). 10 Bagging and Boosting  Slides for PHP2650 Spring24 S01 Statistical
+    Learning and Big Data. Retrieved from https://canvas.brown.edu/courses/1094076/files/folder/Slides?preview=70072239
+    
+    
+  

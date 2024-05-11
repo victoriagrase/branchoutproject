@@ -353,30 +353,6 @@ div.tocify {
 
 
 <body style="background-color:lemonchiffon;">
-<style>
-.logo {
-   position: fixed;
-    top: 60px;
-    left: 20px;
-    width: 250px;
-    height: 250px;
-    z-index: 999; /* Ensure the logo appears above other content */
-}
-.quote {
-   position: fixed;
-   top: 320px; /* Adjust this value to position the text below the logo */
-   left: 20px; /* Adjust this value to align the text with the logo */
-   font-family: Arial, sans-serif; /* Adjust font if necessary */
-   font-size: 10px; /* Adjust font size if necessary */
-   color: black; /* Adjust text color if necessary */
-}
-</style>
-<p><img
-src="images/treelogo.png"
-class="logo" /></p>
-<div class="quote">
-“Planting the seeds of optimization, one branch at a time”
-</div>
 <style type="text/css">
 
 .title { display: none; }
@@ -409,9 +385,10 @@ class="uri">https://bitbucket.org/EmirD/murtree/src/master/</a></p>
 class="section level3">
 <h3><strong>Previous work contributing to Design of
 MurTree</strong></h3>
-<ol style="list-style-type: decimal">
-<li><p>Binarising</p>
-<ol style="list-style-type: decimal">
+</div>
+<div id="binarising" class="section level3">
+<h3><strong>Binarising</strong></h3>
+<ol start="5" style="list-style-type: decimal">
 <li><p>Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
 decision tree induction from itemset lattices. Data Mining and Knowledge
 Discovery, 21(1), 2010</p></li>
@@ -423,36 +400,44 @@ trees using a binary linear program formulation. In Proceedings of AAAI,
 2019.</p></li>
 <li><p>Dimitris Bertsimas and Jack Dunn. Optimal classification trees.
 Machine Learning, 106(7),2017.</p></li>
-</ol></li>
-<li><p>Lower Bounding</p>
-<ol style="list-style-type: decimal">
+</ol>
+</div>
+<div id="lower-bounding" class="section level3">
+<h3><strong>Lower Bounding</strong></h3>
+<ol start="9" style="list-style-type: decimal">
 <li><p>Elaine Angelino, Nicholas Larus-Stone, Daniel Alabi, Margo
 Seltzer, and Cynthia Rudin. Learning certifiably optimal rule lists for
 categorical data. The Journal of Machine Learning Research,
 2017.</p></li>
 <li><p>Mohammed J Zaki and Karam Gouda. Fast vertical mining using
 diffsets. In Proceedings of SIGKDD, 2003.</p></li>
-</ol></li>
-<li><p>Misclassification</p>
-<ol style="list-style-type: decimal">
+</ol>
+</div>
+<div id="misclassification" class="section level3">
+<h3><strong>Misclassification</strong></h3>
+<ol start="11" style="list-style-type: decimal">
 <li><p>Hélene Verhaeghe, Siegfried Nijssen, Gilles Pesant, Claude-Guy
 Quimper, and Pierre Schaus.Learning optimal decision trees using
 constraint programming. In Proceedings of CP, 2019.</p></li>
 <li><p>Hao Hu, Mohamed Siala, Emmanuel Hebrard, and Marie-José Huguet.
 Learning optimal decision trees with maxsat and its integration in
 adaboost. In Proceedings of IJCAI, 2020.</p></li>
-</ol></li>
-<li><p>Frequency Counting for Mining</p>
-<ol style="list-style-type: decimal">
+</ol>
+</div>
+<div id="frequency-counting-for-mining" class="section level3">
+<h3><strong>Frequency Counting for Mining</strong></h3>
+<ol start="13" style="list-style-type: decimal">
 <li><p>Mohammed Javeed Zaki. Scalable algorithms for association mining.
 IEEE Transactions on Knowledge and Data Engineering, 12(3),
 2000.</p></li>
 <li><p>Albrecht Zimmermann and Luc De Raedt. Cluster-grouping: from
 subgroup discovery to clustering. Machine Learning, 77(1),
 2009.</p></li>
-</ol></li>
-<li><p>Dynamic Programming and Search</p>
-<ol style="list-style-type: decimal">
+</ol>
+</div>
+<div id="dynamic-programming-and-search" class="section level3">
+<h3><strong>Dynamic Programming and Search</strong></h3>
+<ol start="15" style="list-style-type: decimal">
 <li><p>Siegfried Nijssen and Elisa Fromont. Optimal constraint-based
 decision tree induction from itemset lattices. Data Mining and Knowledge
 Discovery, 21(1), 2010</p></li>
@@ -461,9 +446,11 @@ Quimper, and Pierre Schaus.Learning optimal decision trees using
 constraint programming. In Proceedings of CP, 2019.</p></li>
 <li><p>Thibaut Vidal and Maximilian Schiffer. Born-again tree ensembles.
 In Proceedings of ICML,2020.</p></li>
-</ol></li>
-<li><p>Constraints and Caching</p>
-<ol style="list-style-type: decimal">
+</ol>
+</div>
+<div id="constraints-and-caching" class="section level3">
+<h3><strong>Constraints and Caching</strong></h3>
+<ol start="18" style="list-style-type: decimal">
 <li><p>Gaël Aglin, Siegfried Nijssen, and Pierre Schaus. Learning
 optimal decision trees using caching branch-and-bound search. In
 Proceedings of AAAI, 2020a.</p></li>
@@ -477,9 +464,11 @@ Proceedings of CPAIOR, 2017.</p></li>
 trees. In Proceedings of AAAI,2020</p></li>
 <li><p>Xiyang Hu, Cynthia Rudin, and Margo Seltzer. Optimal sparse
 decision trees. In Proceedings of NeurIPS, 2019.</p></li>
-</ol></li>
-<li><p>Nonlinear Metrics and Sparse</p>
-<ol style="list-style-type: decimal">
+</ol>
+</div>
+<div id="nonlinear-metrics-and-sparse" class="section level3">
+<h3><strong>Nonlinear Metrics and Sparse</strong></h3>
+<ol start="23" style="list-style-type: decimal">
 <li><p>Emir Demirović and Peter Stuckey. Optimal decision trees for
 nonlinear metrics. In Proceedings of AAAI, 2021.</p></li>
 <li><p>Rafael Blanquero, Emilio Carrizosa, Cristina Molero-Río, and
@@ -488,8 +477,22 @@ trees. European Journal of Operational Research,</p>
 <ol start="2020" style="list-style-type: decimal">
 <li></li>
 </ol></li>
-</ol></li>
 </ol>
+</div>
+<div id="other-materials" class="section level3">
+<h3><strong>Other Materials</strong></h3>
+<p>25.Paul, A. (2024). 8 Optimizations. Slides for PHP2650 Spring24 S01
+Statistical Learning and Big Data. Retrieved from <a
+href="https://canvas.brown.edu/courses/1094076/files/folder/Slides?preview=70016628"
+class="uri">https://canvas.brown.edu/courses/1094076/files/folder/Slides?preview=70016628</a></p>
+<p>26.Paul, A. (2024). 9 Trees. Slides for PHP2650 Spring24 S01
+Statistical Learning and Big Data. Retrieved from <a
+href="https://canvas.brown.edu/courses/1094076/files/folder/Slides?preview=70029981"
+class="uri">https://canvas.brown.edu/courses/1094076/files/folder/Slides?preview=70029981</a></p>
+<p>27.Paul, A. (2024). 10 Bagging and Boosting Slides for PHP2650
+Spring24 S01 Statistical Learning and Big Data. Retrieved from <a
+href="https://canvas.brown.edu/courses/1094076/files/folder/Slides?preview=70072239"
+class="uri">https://canvas.brown.edu/courses/1094076/files/folder/Slides?preview=70072239</a></p>
 </div>
 </div>
 
